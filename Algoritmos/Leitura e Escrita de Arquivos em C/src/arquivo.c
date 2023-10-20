@@ -7,6 +7,10 @@ void writex(char *f, int *vector, int n) {
 
     if (file != NULL) {
         for (int i = 0; i < n; i++) {
+            // fprintf e' uma funcao de output para arquivos.
+            // 1) O primeiro parametro e' um ponteiro para o arquivo onde iremos escrever.
+            // 2) O segundo parametro e' uma string que formata os dados.
+            // 3) O ultimo parametro e' de onde virao estes dados.
             fprintf(file, "%d\n", vector[i]);
         }
     }
@@ -44,6 +48,8 @@ void readb(char *f) {
     int value;
 
     if (file != NULL) {
+        // A função feof retorna um valor diferente de zero se uma operação de leitura tentou ler após o final do arquivo.
+        // Caso contrário, retorna 0.
         while (!feof(file)) {
             if (fread(&value, sizeof(value), 1, file)) {
                 printf("%d\n", value);
