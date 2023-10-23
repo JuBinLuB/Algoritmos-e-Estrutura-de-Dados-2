@@ -28,10 +28,13 @@ TFunc *le(FILE *in);
 // Imprime funcionario.
 void imprime(TFunc *func);
 
-// Busca funcionario pelo codigo.
-TFunc *busca_sequencial_cod(int cod, FILE *out);
+// Cria base de dados.
+void criarBase(FILE *out, int tam);
 
-// Busca funcionario pelo nome.
-TFunc *busca_sequencial_func(char *nome, FILE *out);
+// Embaralha base de dados.
+void shuffle(int *vet, int MAX, int MIN);
+
+// Imprime base de dados.
+void imprimirBase(FILE *out);
 
 #endif // FUNCIONARIO_H_INCLUDED
