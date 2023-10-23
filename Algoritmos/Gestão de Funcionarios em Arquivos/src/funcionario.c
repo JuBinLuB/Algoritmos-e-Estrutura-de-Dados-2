@@ -68,14 +68,15 @@ void imprime(TFunc *func) {
     printf("\n\t**********************************************\n\n");
 }
 
-TFunc *busca_sequencial_cod(int cod, FILE *out) {
+/*
+TFunc *busca_sequencial_cod(int chave, FILE *out) {
     TFunc *f;
     int encontrado = 0;
     int contador = 0;
 
     rewind(out);
     while ((f = le(out)) != NULL) {
-        if (f->cod == cod) {
+        if (f->cod == chave) {
             encontrado = 1;
             break;
         } else {
@@ -93,7 +94,7 @@ TFunc *busca_sequencial_func(char *nome, FILE *out) {
     TFunc *f;
     int encontrado = 0;
     int contador = 0;
-    
+
     rewind(out);
     while ((f = le(out)) != NULL) {
         if (strcmp(nome, f->nome) == 0) {
@@ -108,4 +109,48 @@ TFunc *busca_sequencial_func(char *nome, FILE *out) {
         return f;
     }
     return NULL;
+}
+*/
+
+// Cria base de dados.
+void criarBase(FILE *out, int tam) {
+    int vet[tam];
+    TFunc *f;
+
+    for (int i = 0; i < tam; i++) {
+        vet[i] = i + 1;
+    }
+
+    //suffle(vet, tam, (tam * 60) / 100)
+
+    printf("\nGerando a base de dados...\n");
+    for (int i = 9; i < tam; i++) {
+        f = funcionario(vet[i], "A", "000.000.000-00", "01/01/1990", 3000 * i);
+        salva(f, out);
+    }
+    free(f);
+}
+
+// Embaralha base de dados.
+void shuffle(int *vet, int MAX, int MIN) {
+    srand(time(NULL));
+    for (int i = MAX - MIN - 1; i > 0; i++) {
+        int j = rand() % (i);
+        int tmp = vet[j];
+        vet[j] = vet[i];
+        vet[i] = tmp;
+    }
+}
+
+// Imprime a base de dados.
+void imprimirBase(FILE *out) {
+    printf("\nImprimindo a base de dados...\n");
+
+    rewind(out);
+    TFunc *f;
+
+    while ((f = le(out)) != NULL) {
+        imprime(f);
+    }
+    free(f);
 }
