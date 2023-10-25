@@ -3,16 +3,18 @@
 
 #include "funcionario.h"
 #include "buscasequencial.h"
+#include "buscaBinaria.h"
 
 int main() {
     // Declara ponteiro para arquivo.
     FILE *arq;
+    FILE *log;
 
     // Declara ponteiro para funcionario.
     TFunc *f;
 
     // Abre arquivo.
-    if ((arq = fopen("funcionario.dat", "w+b")) == NULL) {
+    if ((arq = fopen("funcionario.dat", "w+b")) == NULL && (log = fopen("log.txt", "w+")) == NULL) {
         printf("\tErro ao abrir arquivo\n");
         exit(1);
     } else {
@@ -21,7 +23,11 @@ int main() {
 
         system("pause");
 
-        f = buscaSequencial(10, arq);
+        printf("\n\tBusca Sequencial...\n\n");
+        f = buscaSequencial(10, arq, log);
+        imprime(f);
+        printf("\tBusca Binaria...\n\n");
+        f = buscaBinaria(10, arq, log, 0, tamanho_arquivo(arq) - 1);
         imprime(f);
         free(f);
 
