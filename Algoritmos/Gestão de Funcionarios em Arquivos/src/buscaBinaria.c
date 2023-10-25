@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "buscaBinaria.h"
+#include "funcionario.h"
 
 TFunc *buscaBinaria(int chave, FILE * in, FILE *log, int inicio, int fim) {
     // Armazena o tempo de execução do código.
