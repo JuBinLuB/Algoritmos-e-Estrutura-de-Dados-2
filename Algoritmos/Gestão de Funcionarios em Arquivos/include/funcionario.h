@@ -15,6 +15,9 @@ typedef struct Funcionario {
 // Retorna tamanho do funcionario em bytes.
 int tamanho_registro();
 
+// Retorna a quantidade de registros no arquivo.
+int tamanho_arquivo(FILE *aqr);
+
 // Cria funcionario.
 TFunc *funcionario(int cod, char *nome, char *cpf, char *data_nascimento, double salario);
 
