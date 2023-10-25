@@ -3,16 +3,17 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "buscaSequencial.h"
 #include "funcionario.h"
 
 // Realiza uma busca sequencial por um funcionario na base de dados.
-TFunc *buscaSequencial(int chave, FILE * in) {
+TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
     // Armazena o tempo de execução do código.
     double time_spent = 0.0;
     clock_t begin = clock();
     sleep(3);
 
-    TFunc *f;
+    TFunc *f = NULL;
     int encontrado = 0;
     int contador = 0;
 
@@ -24,8 +25,8 @@ TFunc *buscaSequencial(int chave, FILE * in) {
             break;
         } else {
             contador++;
+            fprintf(log, "\tComparacoes: %d\n", contador);
         }
-        printf("\tComparacoes: %d\n", contador);
     }
     clock_t end = clock();
 
@@ -33,8 +34,8 @@ TFunc *buscaSequencial(int chave, FILE * in) {
     // dividindo a diferença por CLOCKS_PER_SEC para converter em segundos.
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    // Exibindo o tempo de CPU consumido pela aplicacao.
-    printf("\nThe elapsed time is %f seconds\n", time_spent);
+    // Salvando o tempo de CPU consumido pela aplicacao em um arquivo.
+    fprintf(log, "\n\tThe elapsed time is %f seconds\n", time_spent);
 
     if (encontrado) {
         return f;
@@ -42,3 +43,30 @@ TFunc *buscaSequencial(int chave, FILE * in) {
     free(f);
     return NULL;
 }
+
+/*
+// Realiza uma busca sequencial por um funcionario na base de dados.
+TFunc *buscaSequencial(char *nome, FILE *in) {
+    TFunc *f;
+    int encontrado = 0;
+    int contador = 0;
+
+    rewind(out);
+
+    while ((f = le(in)) != NULL) {
+        if (strcmp(nome, f->nome) == 0) {
+            encontrado = 1;
+            break;
+        } else {
+            contador++;
+        }
+        printf("\tComparacoes: %d\n", contador);
+    }
+
+    if (encontrado) {
+        return f;
+    }
+    free(f);
+    return NULL;
+}
+*/
