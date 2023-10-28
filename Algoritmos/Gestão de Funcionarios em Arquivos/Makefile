@@ -10,11 +10,13 @@ LIBS = -l funcionario -L $(LIB)
 
 all: lib myapps
 
-lib: $(OBJ)/funcionario.o
+lib: $(OBJ)/funcionario.o \
+	 $(OBJ)/buscaSequencial.o \
+	 $(OBJ)/buscaBinaria.o
 	ar -rcs $(LIB)/libfuncionario.a $(OBJ)/*.o
 
 myapps: clean_apps \
-	$(BIN)/teste
+	$(BIN)/main
 
 # Target genérica para compilação dos Tipos Abstratos de Dados.
 $(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
@@ -25,7 +27,7 @@ $(BIN)/%: $(APPS)/%.c $(OBJ)/*.o
 	gcc $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 run:
-	$(BIN)/teste
+	$(BIN)/main
 
 clean:
 	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*

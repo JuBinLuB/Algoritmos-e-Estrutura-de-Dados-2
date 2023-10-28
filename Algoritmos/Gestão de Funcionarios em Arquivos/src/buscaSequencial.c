@@ -3,38 +3,41 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "buscaSequencial.h"
 #include "funcionario.h"
+#include "buscaSequencial.h"
 
 // Realiza uma busca sequencial por um funcionario na base de dados.
 TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
-    // Armazena o tempo de execução do código.
-    double time_spent = 0.0;
+    // Armazena o tempo de execucao do codigo (BEGIN).
     clock_t begin = clock();
     sleep(3);
 
+    // Declaracao de variaveis.
     TFunc *f = NULL;
+    double time_spent = 0.0;
     int encontrado = 0;
     int contador = 0;
 
     rewind(in);
+    fprintf(log, "\tBusca Sequencial...\n\n");
 
     while ((f = le(in)) != NULL) {
         if (f->cod == chave) {
             encontrado = 1;
             break;
-        } else {
-            contador++;
-            fprintf(log, "\tComparacoes: %d\n", contador);
         }
+        contador++;
+        // Exibe o numero de comparacoes realizados pela busca no arquivo log.
+        fprintf(log, "\tComparacoes: %d\n", contador);
     }
+    // Armazena o tempo de execucao do codigo (END).
     clock_t end = clock();
 
-    // Calcula o tempo decorrido encontrando a diferença (end - begin) e
-    // dividindo a diferença por CLOCKS_PER_SEC para converter em segundos.
+    // Calcula o tempo decorrido encontrando a diferenca (end - begin) e
+    // dividindo a diferenca por CLOCKS_PER_SEC para converter em segundos.
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    // Salvando o tempo de CPU consumido pela aplicacao em um arquivo.
+    // Exibe o tempo de CPU consumido pela aplicacao no arquivo log.
     fprintf(log, "\n\tThe elapsed time is %f seconds\n", time_spent);
 
     if (encontrado) {
@@ -43,30 +46,3 @@ TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
     free(f);
     return NULL;
 }
-
-/*
-// Realiza uma busca sequencial por um funcionario na base de dados.
-TFunc *buscaSequencial(char *nome, FILE *in) {
-    TFunc *f;
-    int encontrado = 0;
-    int contador = 0;
-
-    rewind(out);
-
-    while ((f = le(in)) != NULL) {
-        if (strcmp(nome, f->nome) == 0) {
-            encontrado = 1;
-            break;
-        } else {
-            contador++;
-        }
-        printf("\tComparacoes: %d\n", contador);
-    }
-
-    if (encontrado) {
-        return f;
-    }
-    free(f);
-    return NULL;
-}
-*/
