@@ -2,15 +2,15 @@
 #include <stdlib.h>
 
 #include "funcionario.h"
-#include "buscasequencial.h"
+#include "buscaSequencial.h"
 #include "buscaBinaria.h"
 
 int main() {
-    // Declara um ponteiro para arquivo.
+    // Declaracao de ponteiros para arquivo.
     FILE *arq;
     FILE *log;
 
-    // Declara um ponteiro para funcionario.
+    // Declaracao de ponteiro para funcionario.
     TFunc *f;
 
     // Abre o arquivo.
