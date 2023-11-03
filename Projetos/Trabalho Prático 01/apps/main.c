@@ -7,6 +7,8 @@
 #include "ordenarArquivo.h"
 #include "interface.h"
 
+// Aplicacao para gerenciamento de uma biblioteca.
+
 int main() {
     // Declaracao de ponteiros para arquivo.
     FILE *arq;
