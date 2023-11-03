@@ -53,6 +53,6 @@ void MENU(TFunc *func){
                 system("clear");
                 printf("\n\n\n\t >>>>>> MSG: Digite uma opcao valida!!! <<<<<<");
                 system("PAUSE");
-            } // fim do bloco switch.
+            } // Fim do bloco switch.
     } while(opcao != 5);
 }

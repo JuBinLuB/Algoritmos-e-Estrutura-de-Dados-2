@@ -6,8 +6,8 @@
 
 #include "funcionario.h"
 
-void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL
+void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
 
-void MENU(TFunc *func); // MÓDULO DE MENU
+void MENU(TFunc *func); // MODULO DE MENU.
 
 # endif // INTERFACE_H_INCLUDED

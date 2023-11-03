@@ -35,9 +35,16 @@ int main() {
         } else {
             printf("\n\tFuncionario nao encontrado!\n");
         }
+        
+        system("pause");
+        system("cls");
 
-        // Ordena o arquivo de registros em ordem crescente de código.
-        ordenarArquivo(arq, tamanhoArquivo(arq));
+        // Ordena o arquivo de registros armazenados num arquivo binário em ordem crescente de código.
+        selectionSort(arq, tamanhoArquivo(arq));
+        imprimirBase(arq);
+
+        system("pause");
+        system("cls");
         
         // Teste da busca binaria.
         printf("\n\tBusca Binaria...\n");

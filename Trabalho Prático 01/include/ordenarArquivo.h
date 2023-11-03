@@ -1,11 +1,10 @@
-#ifndef SHELLSORT_H_INCLUDED
-#define SHELLSORT_H_INCLUDED
+#ifndef ORDENARARQUIVO_H_INCLUDED
+#define ORDENARARQUIVO_H_INCLUDED
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "funcionario.h"
+// Realiza a ordenacao por selecao em um arquivo contendo registros de funcionarios.
+void selectionSort(FILE *arq, int n);
 
-void ordenarArquivo(FILE *arq, int n);
-
-#endif // SHELLSORT_H_INCLUDED
+#endif // ORDENARARQUIVO_H_INCLUDED
