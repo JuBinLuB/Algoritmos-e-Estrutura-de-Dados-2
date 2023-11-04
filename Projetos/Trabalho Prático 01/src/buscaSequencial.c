@@ -18,7 +18,7 @@ TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
     int contador = 0;
 
     rewind(in);
-    fprintf(log, "\tBusca Sequencial...\n\n");
+    fprintf(log, "\n\tBusca Sequencial...\n\n");
 
     while ((f = le(in)) != NULL) {
         if (f->cod == chave) {
