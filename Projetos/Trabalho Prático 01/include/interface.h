@@ -6,24 +6,24 @@
 
 #include "funcionario.h"
 
-void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
+void imprimirMenuPrincipal(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
 
-void MSG_SUB_MENU(char *str); // MENSAGEM PARA EXIBIR O MENU DE BUSCA.
+void imprimirSubMenu(char *str); // MENSAGEM PARA EXIBIR O MENU DE BUSCA.
 
-void MSG_SUB_MENU_BUSCAR(); // MENSAGEM PARA EXIBIR O SUB MENU DE BUSCA.
+void imprimirSubMenuBuscar(); // MENSAGEM PARA EXIBIR O SUB MENU DE BUSCA.
 
-void MSG_OPCAO_INVALIDA(); // MENSAGEM DE ALERTA DE DIGITO INVALIDO.
+void imprimirMensagemOpcaoInvalida(); // MENSAGEM DE ALERTA DE DIGITO INVALIDO.
 
-void MSG_SAIR(); // MENSAGEM DE SAIDA DO MODULO.
+void imprimirMensagemSair(); // MENSAGEM DE SAIDA DO MODULO.
 
-void MENU(FILE *arq, FILE *livro, FILE *log); // MODULO DE MENU.
+void menuPrincipal(FILE *arq, FILE *livro, FILE *log); // MODULO DE MENU.
 
-void MENU_IMPRIMIR(FILE *arq, FILE *livro); // MODULO IMPRIMIR.
+void menuImprimir(FILE *arq, FILE *livro); // MODULO IMPRIMIR.
 
-void MENU_ORDENAR(FILE *arq, FILE *livro); // MODULO DE ORDENAR.
+void menuBuscar(FILE *arq, FILE *livro, FILE *log); // MODULO DE BUSCAR.
 
-void MENU_BUSCAR(FILE *arq, FILE *livro, FILE *log); // MODULO DE BUSCAR.
+void subMenuBuscar(FILE *arq, FILE *log, char *str); // MODULO DE SUB MENU BUSCAR.
 
-void SUB_MENU_BUSCAR(FILE *arq, FILE *log, char *str); // MODULO DE SUB MENU BUSCAR.
+void menuOrdenar(FILE *arq, FILE *livro); // MODULO DE ORDENAR.
 
 # endif // INTERFACE_H_INCLUDED

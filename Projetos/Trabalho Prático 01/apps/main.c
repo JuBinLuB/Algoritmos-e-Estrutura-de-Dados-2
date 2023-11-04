@@ -20,7 +20,7 @@ int main() {
         criarBase(arq, 1000);
 
         // Inicia o modulo de menu.
-        MENU(arq, livro, log);
+        menuPrincipal(arq, livro, log);
     }
     return 0;
 }

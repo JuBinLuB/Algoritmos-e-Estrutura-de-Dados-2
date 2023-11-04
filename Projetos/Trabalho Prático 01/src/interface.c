@@ -8,7 +8,8 @@
 #include "buscaBinaria.h"
 #include "ordenarArquivo.h"
 
-void MSG_MENU() {
+// Funcao para imprimir o menu principal.
+void imprimirMenuPrincipal() {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("\n\n\t1. IMPRIMIR");
@@ -18,7 +19,8 @@ void MSG_MENU() {
     printf("  \n\t5. SAIR");
 }
 
-void MSG_SUB_MENU(char *str) {
+// Funcao para imprimir submenu com opcoes especificas.
+void imprimirSubMenu(char *str) {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU %s <<<<<<<<<<<<<<<<<<<<<<<<", str);
     printf("  \n\t1. LIVRO");
@@ -26,7 +28,8 @@ void MSG_SUB_MENU(char *str) {
     printf("  \n\t3. VOLTAR");
 }
 
-void MSG_SUB_MENU_BUSCAR() {
+// Funcao para imprimir mensagem para imprimir o submenu de busca.
+void imprimirSubMenuBuscar() {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE BUSCA <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("  \n\t1. BUSCA SEQUENCIAL");
@@ -34,23 +37,26 @@ void MSG_SUB_MENU_BUSCAR() {
     printf("  \n\t3. VOLTAR");
 }
 
-void MSG_OPCAO_INVALIDA() {
+// Funcao para imprimir mensagem de opcao invalida.
+void imprimirMensagemOpcaoInvalida() {
     system("cls");
     printf("\n\n\n\t >>>>>> MSG: Digite uma opcao valida!!! <<<<<<\n");
     system("pause");
 }
 
-void MSG_SAIR() {
+// Funcao para imprimir mensagem de saida.
+void imprimirMensagemSair() {
     system("cls");
     printf("\n\n\n\t >>>>>> MSG: Saindo do MODULO...!!! <<<<<<\n");
     system("pause");
 }
 
-void MENU(FILE *arq, FILE *livro, FILE *log) {
+// Funcao de menu principal.
+void menuPrincipal(FILE *arqFuncionario, FILE *arqLivro, FILE *log) {
     int opcao = 0;
 
     do {
-        MSG_MENU();
+        imprimirMenuPrincipal();
         printf("\n\n\tDigite uma opcao: ");
         fflush(stdin);
         scanf("%d", &opcao);
@@ -60,13 +66,15 @@ void MENU(FILE *arq, FILE *livro, FILE *log) {
             /**
                 Codigo para opcao de menu Imprimir.
             */
-            MENU_IMPRIMIR(arq, livro);
+            imprimirSubMenu("IMPRIMIR");
+            menuImprimir(arqFuncionario, arqLivro);
             break;
         case 2:
             /**
                 Codigo para opcao de menu Buscar.
             */
-            MENU_BUSCAR(arq, livro, log);
+            imprimirSubMenu("BUSCAR");
+            menuBuscar(arqFuncionario, arqLivro, log);
             break;
         case 3:
             /**
@@ -77,114 +85,78 @@ void MENU(FILE *arq, FILE *livro, FILE *log) {
             /**
                 Codigo para opcao de menu Ordenar.
             */
-            MENU_ORDENAR(arq, livro);
+            imprimirSubMenu("ORDENAR");
+            menuOrdenar(arqFuncionario, arqLivro);
             break;
-        case 6:
-            MSG_SAIR();
+        case 5:
+            imprimirMensagemSair();
             break;
         default:
-            MSG_OPCAO_INVALIDA();
+            imprimirMensagemOpcaoInvalida();
         } // Fim do bloco switch.
     } while (opcao != 5);
 }
 
-void MENU_IMPRIMIR(FILE *arq, FILE *livro) {
+// Funcao de submenu para a opcao de IMPRIMIR.
+void menuImprimir(FILE *arqFuncionario, FILE *arqLivro) {
     int opcao = 0;
 
-    MSG_SUB_MENU("IMPRIMIR");
     printf("\n\n\tDigite uma opcao: ");
     fflush(stdin);
     scanf("%d", &opcao);
 
     switch (opcao) {
     case 1:
-        /**
-            Codigo para opcao de menu Livro.
-        */
-        imprimirBase(livro);
+        // Codigo para opcao de menu Livro.
+        imprimirBase(arqLivro);
         system("pause");
         break;
     case 2:
-        /**
-            Codigo para opcao de menu Funcionario.
-        */
-        imprimirBase(arq);
+        // Codigo para opcao de menu Funcionario.
+        imprimirBase(arqFuncionario);
         system("pause");
         break;
     case 3:
-        MSG_SAIR();
         break;
     default:
-        MSG_OPCAO_INVALIDA();
+        imprimirMensagemOpcaoInvalida();
     }
 }
 
-void MENU_ORDENAR(FILE *arq, FILE *livro) {
+// Funcao de submenu para a opcao de BUSCAR.
+void menuBuscar(FILE *arqFuncionario, FILE *arqLivro, FILE *log) {
     int opcao = 0;
 
-    MSG_SUB_MENU("ORDENAR");
     printf("\n\n\tDigite uma opcao: ");
     fflush(stdin);
     scanf("%d", &opcao);
 
     switch (opcao) {
     case 1:
-        /**
-            Codigo para opcao de menu Ordenar Livro.
-        */
-        selectionSort(livro, tamanhoArquivo(livro));
-        break;
-    case 2:
-        /**
-            Codigo para opcao de menu Ordenar Funcionario.
-        */
-        selectionSort(arq, tamanhoArquivo(arq));
-        break;
-    case 3:
-        MSG_SAIR();
-        break;
-    default:
-        MSG_OPCAO_INVALIDA();
-    }
-}
-
-void MENU_BUSCAR(FILE *arq, FILE *livro, FILE *log) {
-    int opcao = 0;
-
-    MSG_SUB_MENU("BUSCAR");
-    printf("\n\n\tDigite uma opcao: ");
-    fflush(stdin);
-    scanf("%d", &opcao);
-
-    switch (opcao) {
-    case 1:
-        /**
-            Codigo para opcao de menu Buscar Livro.
-        */
-        SUB_MENU_BUSCAR(livro, log, "Livro");
+        // Codigo para opcao de menu Buscar Livro.
+        imprimirSubMenuBuscar();
+        subMenuBuscar(arqLivro, log, "Livro");
         system("pause");
         break;
     case 2:
-        /**
-            Codigo para opcao de menu Buscar Funcionario.
-        */
-        SUB_MENU_BUSCAR(arq, log, "Funcionario");
+        // Codigo para opcao de menu Buscar Funcionario.
+        imprimirSubMenuBuscar();
+        subMenuBuscar(arqFuncionario, log, "Funcionario");
         system("pause");
         break;
     case 3:
-        MSG_SAIR();
         break;
     default:
-        MSG_OPCAO_INVALIDA();
+        imprimirMensagemOpcaoInvalida();
     }
 }
 
-void SUB_MENU_BUSCAR(FILE *arq, FILE *log, char *str) {
+// Funcao de submenu para a opcao de BUSCA SEQUENCIAL e BUSCA BINARIA.
+void subMenuBuscar(FILE *arqFuncionario, FILE *log, char *str) {
     TFunc *f = NULL;
     int opcao = 0;
     int codigo = 0;
 
-    MSG_SUB_MENU_BUSCAR();
     printf("\n\n\tDigite uma opcao: ");
     fflush(stdin);
     scanf("%d", &opcao);
@@ -192,14 +164,12 @@ void SUB_MENU_BUSCAR(FILE *arq, FILE *log, char *str) {
 
     switch (opcao) {
     case 1:
-        /**
-            Codigo de menu Buscar Sequencial.
-        */
+        // Codigo de menu Buscar Sequencial.
         printf("\n\tBusca Sequencial...\n");
         printf("\n\tDigite o codigo: ");
         scanf("%d", &codigo);
 
-        f = buscaSequencial(codigo, arq, log);
+        f = buscaSequencial(codigo, arqFuncionario, log);
 
         if (f) {
             imprime(f);
@@ -208,15 +178,13 @@ void SUB_MENU_BUSCAR(FILE *arq, FILE *log, char *str) {
         }
         break;
     case 2:
-        /**
-            Codigo de menu Buscar Binario.
-        */
+        // Codigo de menu Buscar Binario.
         printf("\n\tBusca Binaria...\n");
         printf("\n\tDigite o codigo: ");
         scanf("%d", &codigo);
 
-        f = buscaBinaria(codigo, arq, log, 0, tamanhoArquivo(arq) - 1);
-
+        f = buscaBinaria(codigo, arqFuncionario, log, 0, tamanhoArquivo(arqFuncionario));
+        
         if (f) {
             imprime(f);
         } else {
@@ -224,10 +192,33 @@ void SUB_MENU_BUSCAR(FILE *arq, FILE *log, char *str) {
         }
         break;
     case 3:
-        MSG_SAIR();
         break;
     default:
-        MSG_OPCAO_INVALIDA();
+        imprimirMensagemOpcaoInvalida();
     }
     free(f);
+}
+
+// Funcao de submenu para a opcao de ORDENAR.
+void menuOrdenar(FILE *arqFuncionario, FILE *arqLivro) {
+    int opcao = 0;
+
+    printf("\n\n\tDigite uma opcao: ");
+    fflush(stdin);
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+    case 1:
+        // Codigo para opcao de menu Ordenar Livro.
+        selectionSort(arqLivro, tamanhoArquivo(arqLivro));
+        break;
+    case 2:
+        // Codigo para opcao de menu Ordenar Funcionario.
+        selectionSort(arqFuncionario, tamanhoArquivo(arqFuncionario));
+        break;
+    case 3:
+        break;
+    default:
+        imprimirMensagemOpcaoInvalida();
+    }
 }
