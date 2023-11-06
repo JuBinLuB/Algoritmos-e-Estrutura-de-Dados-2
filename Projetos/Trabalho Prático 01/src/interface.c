@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include "interface.h"
-#include "livro.h"
 #include "funcionario.h"
 #include "buscaSequencial.h"
 #include "buscaBinaria.h"
@@ -23,7 +22,7 @@ void imprimirMenuPrincipal() {
 void imprimirSubMenu(char *str) {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU %s <<<<<<<<<<<<<<<<<<<<<<<<", str);
-    printf("  \n\t1. LIVRO");
+    printf("\n\n\t1. LIVRO");
     printf("  \n\t2. FUNCIONARIO");
     printf("  \n\t3. VOLTAR");
 }
@@ -32,7 +31,7 @@ void imprimirSubMenu(char *str) {
 void imprimirSubMenuBuscar() {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE BUSCA <<<<<<<<<<<<<<<<<<<<<<<<");
-    printf("  \n\t1. BUSCA SEQUENCIAL");
+    printf("\n\n\t1. BUSCA SEQUENCIAL");
     printf("  \n\t2. BUSCA BINARIA");
     printf("  \n\t3. VOLTAR");
 }
@@ -86,7 +85,7 @@ void menuPrincipal(FILE *arqFuncionario, FILE *arqLivro, FILE *log) {
                 Codigo para opcao de menu Ordenar.
             */
             imprimirSubMenu("ORDENAR");
-            menuOrdenar(arqFuncionario, arqLivro);
+            menuOrdenar(arqFuncionario, arqLivro, log);
             break;
         case 5:
             imprimirMensagemSair();
@@ -184,7 +183,7 @@ void subMenuBuscar(FILE *arqFuncionario, FILE *log, char *str) {
         scanf("%d", &codigo);
 
         f = buscaBinaria(codigo, arqFuncionario, log, 0, tamanhoArquivo(arqFuncionario));
-        
+
         if (f) {
             imprime(f);
         } else {
@@ -200,7 +199,7 @@ void subMenuBuscar(FILE *arqFuncionario, FILE *log, char *str) {
 }
 
 // Funcao de submenu para a opcao de ORDENAR.
-void menuOrdenar(FILE *arqFuncionario, FILE *arqLivro) {
+void menuOrdenar(FILE *arqFuncionario, FILE *arqLivro, FILE *log) {
     int opcao = 0;
 
     printf("\n\n\tDigite uma opcao: ");
@@ -210,11 +209,11 @@ void menuOrdenar(FILE *arqFuncionario, FILE *arqLivro) {
     switch (opcao) {
     case 1:
         // Codigo para opcao de menu Ordenar Livro.
-        insertionSort(arqLivro, tamanhoArquivo(arqLivro));
+        insertionSort(arqLivro, log, tamanhoArquivo(arqLivro));
         break;
     case 2:
         // Codigo para opcao de menu Ordenar Funcionario.
-        insertionSort(arqFuncionario, tamanhoArquivo(arqFuncionario));
+        insertionSort(arqFuncionario, log, tamanhoArquivo(arqFuncionario));
         break;
     case 3:
         break;
