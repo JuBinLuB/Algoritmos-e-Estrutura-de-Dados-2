@@ -22,6 +22,6 @@ void menuBuscar(FILE *arq, FILE *livro, FILE *log); // MODULO DE BUSCAR.
 
 void subMenuBuscar(FILE *arq, FILE *log, char *str); // MODULO DE SUB MENU BUSCAR.
 
-void menuOrdenar(FILE *arq, FILE *livro); // MODULO DE ORDENAR.
+void menuOrdenar(FILE *arq, FILE *livro, FILE *log); // MODULO DE ORDENAR.
 
 # endif // INTERFACE_H_INCLUDED
