@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ordenarArquivo.h"
+#include "selectionSort.h"
 #include "funcionario.h"
 
 // Realiza a ordenacao por selecao em um arquivo contendo registros de funcionarios.
@@ -44,6 +44,6 @@ void selectionSort(FILE *arq, int tam) {
             salva(menor, arq);
         }
     }
-    // Sincroniza o arquivo com o disco.
+    // Descarrega o buffer para ter certeza que dados foram gravados.
     fflush(arq);
 }

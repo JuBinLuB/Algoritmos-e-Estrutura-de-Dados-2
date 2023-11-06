@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "funcionario.h"
-
 void imprimirMenuPrincipal(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
 
 void imprimirSubMenu(char *str); // MENSAGEM PARA EXIBIR O MENU DE BUSCA.

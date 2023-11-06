@@ -13,7 +13,7 @@ all: lib myapps
 lib: $(OBJ)/funcionario.o \
 	 $(OBJ)/buscaSequencial.o \
 	 $(OBJ)/buscaBinaria.o \
-	 $(OBJ)/ordenarArquivo.o \
+	 $(OBJ)/insertionSort.o \
 	 $(OBJ)/interface.o
 	ar -rcs $(LIB)/libbiblioteca.a $(OBJ)/*.o
 

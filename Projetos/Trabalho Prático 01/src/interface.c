@@ -6,7 +6,7 @@
 #include "funcionario.h"
 #include "buscaSequencial.h"
 #include "buscaBinaria.h"
-#include "ordenarArquivo.h"
+#include "insertionSort.h"
 
 // Funcao para imprimir o menu principal.
 void imprimirMenuPrincipal() {
@@ -210,11 +210,11 @@ void menuOrdenar(FILE *arqFuncionario, FILE *arqLivro) {
     switch (opcao) {
     case 1:
         // Codigo para opcao de menu Ordenar Livro.
-        selectionSort(arqLivro, tamanhoArquivo(arqLivro));
+        insertionSort(arqLivro, tamanhoArquivo(arqLivro));
         break;
     case 2:
         // Codigo para opcao de menu Ordenar Funcionario.
-        selectionSort(arqFuncionario, tamanhoArquivo(arqFuncionario));
+        insertionSort(arqFuncionario, tamanhoArquivo(arqFuncionario));
         break;
     case 3:
         break;
