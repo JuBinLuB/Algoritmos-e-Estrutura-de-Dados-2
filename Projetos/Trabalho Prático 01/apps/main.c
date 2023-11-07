@@ -17,9 +17,6 @@ int main() {
         printf("\tErro ao abrir arquivo\n");
         exit(1);
     } else {
-        // Cria uma base de dados contendo 1000 funcionarios.
-        criarBase(arq, 1000);
-
         // Inicia o modulo de menu.
         menuPrincipal(arq, livro, log);
     }
