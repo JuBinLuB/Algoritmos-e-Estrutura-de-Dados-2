@@ -122,7 +122,7 @@ void menuCriarBaseDados(FILE *arqFunc, FILE *arqLivro) {
 
     switch (opcao) {
     case 1:
-        printf("\tCriar base de dados de livros...\n\n");
+        printf("\tCriando base de dados de livros...\n");
         printf("\n\tInforme o tamanho da base de dados: ");
         fflush(stdin);
         scanf("%d", &tam);
@@ -131,7 +131,7 @@ void menuCriarBaseDados(FILE *arqFunc, FILE *arqLivro) {
         criarBase(arqLivro, tam);
         break;
     case 2:
-        printf("\tCriar base de dados de funcionarios...\n\n");
+        printf("\tCriando base de dados de funcionarios...\n");
         printf("\n\tInforme o tamanho da base de dados: ");
         fflush(stdin);
         scanf("%d", &tam);
