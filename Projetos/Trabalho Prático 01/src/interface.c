@@ -192,7 +192,7 @@ void menuBuscar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
 void subMenuBuscar(FILE *arq, FILE *log, char *str) {
     if (tamanhoArquivo(arq) == 0) {
         system("cls");
-        printf("\n\n\tBase de dados vazia.\n\n");
+        printf("\n\tBase de dados vazia...\n\n");
     } else {
         TLivro *livro = NULL;
         int opcao = 0;
@@ -256,7 +256,7 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
     case 1:
         // Codigo para opcao de menu Ordenar Livro.
         if (tamanhoArquivo(arqLivros) == 0) {
-            printf("\n\tBase de dados vazia.\n\n");
+            printf("\n\tBase de dados vazia...\n\n");
         } else {
             printf("\n\tOrdenando arquivo...\n\n");
             insertionSort(arqLivros, log, tamanhoArquivo(arqLivros));
@@ -268,7 +268,7 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
     case 2:
         // Codigo para opcao de menu Ordenar Emprestimo.
         if (tamanhoArquivo(arqEmprestimos) == 0) {
-            printf("\n\tBase de dados vazia.\n\n");
+            printf("\n\tBase de dados vazia...\n\n");
         } else {
             printf("\n\tOrdenando arquivo...\n\n");
             insertionSort(arqEmprestimos, log, tamanhoArquivo(arqEmprestimos));

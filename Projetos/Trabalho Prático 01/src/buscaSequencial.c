@@ -21,13 +21,14 @@ TLivro *buscaSequencial(int chave, FILE *in, FILE *log) {
     fprintf(log, "\n\tBusca Sequencial...\n\n");
 
     while ((livro = le(in)) != NULL) {
+        contador++;
+        // Registra o numero de comparacoes realizadas pela busca no arquivo de log.
+        fprintf(log, "\tComparacoes: %d\n", contador);
+
         if (livro->ISBN == chave) {
             encontrado = 1;
             break;
         }
-        contador++;
-        // Registra o numero de comparacoes realizadas pela busca no arquivo de log.
-        fprintf(log, "\tComparacoes: %d\n", contador);
     }
     // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);

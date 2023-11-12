@@ -12,4 +12,20 @@ typedef struct {
     int emprestimos[5];
 } TUsuario;
 
+// Imprime Usuario.
+void imprime(TUsuario *usuario) {
+    printf("\n\t**********************************************");
+    printf("\n\tID: ");
+    printf("%d", usuario->ID);
+    printf("\n\tNome: ");
+    printf("%s", usuario->nome);
+    printf("\n\tCPF: ");
+    printf("%s", usuario->cpf);
+    printf("\n\tData de Nascimento: ");
+    printf("%s", usuario->dataNascimento);
+    printf("\n\tEmprestimos: ");
+    printf("%s", usuario->emprestimos);
+    printf("\n\t**********************************************\n");
+}
+
 #endif // USUARIO_H_INCLUDED

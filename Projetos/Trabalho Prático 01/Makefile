@@ -14,7 +14,8 @@ lib: $(OBJ)/livro.o \
 	 $(OBJ)/buscaSequencial.o \
 	 $(OBJ)/buscaBinaria.o \
 	 $(OBJ)/insertionSort.o \
-	 $(OBJ)/interface.o
+	 $(OBJ)/interface.o \
+	 $(OBJ)/randomizer.o
 	ar -rcs $(LIB)/libbiblioteca.a $(OBJ)/*.o
 
 myapps: clean_apps \

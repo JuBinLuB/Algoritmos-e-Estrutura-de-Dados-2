@@ -22,7 +22,7 @@ TLivro *buscaBinaria(int chave, FILE *in, FILE *log, int inicio, int fim) {
 
     while (inicio <= fim && codigo != chave) {
         int meio = trunc((inicio + fim) / 2);
-        fseek(in, (meio -1) * tamanhoRegistro(), SEEK_SET);
+        fseek(in, (meio - 1) * tamanhoRegistro(), SEEK_SET);
         livro = le(in);
         codigo = livro->ISBN;
 

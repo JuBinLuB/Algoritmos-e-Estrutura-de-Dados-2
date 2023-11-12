@@ -36,9 +36,6 @@ void criarBase(FILE *out, int tam);
 // Embaralha base de dados.
 void shuffle(int *vet, int MAX, int MIN);
 
-// Gera datas aleatórias no formato "DD/MM/AAAA".
-void gerarDataAleatoria(char *data);
-
 // Imprime base de dados.
 void imprimirBase(FILE *out);
 
