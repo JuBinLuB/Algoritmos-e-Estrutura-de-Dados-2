@@ -4,24 +4,24 @@
 #include <time.h>
 
 #include "buscaSequencial.h"
-#include "funcionario.h"
+#include "livro.h"
 
-// Realiza uma busca sequencial por um funcionario na base de dados.
-TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
+// Realiza uma busca sequencial por um livro na base de dados.
+TLivro *buscaSequencial(int chave, FILE *in, FILE *log) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     // Declaracao de variaveis.
-    TFunc *f = NULL;
+    TLivro *livro = NULL;
     int encontrado = 0;
     int contador = 0;
 
     rewind(in);
     fprintf(log, "\n\tBusca Sequencial...\n\n");
 
-    while ((f = le(in)) != NULL) {
-        if (f->cod == chave) {
+    while ((livro = le(in)) != NULL) {
+        if (livro->ISBN == chave) {
             encontrado = 1;
             break;
         }
@@ -40,8 +40,8 @@ TFunc *buscaSequencial(int chave, FILE * in, FILE *log) {
     fprintf(log, "\n\tThe elapsed time is %f seconds\n", time_spent);
 
     if (encontrado) {
-        return f;
+        return livro;
     }
-    free(f);
+    free(livro);
     return NULL;
 }

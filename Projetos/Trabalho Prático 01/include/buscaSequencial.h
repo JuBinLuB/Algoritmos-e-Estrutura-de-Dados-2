@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "funcionario.h"
+#include "livro.h"
 
-// Realiza uma busca sequencial por um funcionario na base de dados.
-TFunc *buscaSequencial(int chave, FILE * in, FILE *log);
+// Realiza uma busca sequencial por um livro na base de dados.
+TLivro *buscaSequencial(int chave, FILE *in, FILE *log);
 
 #endif // BUSCASEQUENCIAL_H_INCLUDED

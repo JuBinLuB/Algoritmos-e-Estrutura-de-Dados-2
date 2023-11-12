@@ -3,17 +3,17 @@
 #include <time.h>
 
 #include "insertionSort.h"
-#include "funcionario.h"
+#include "livro.h"
 
-// Realiza a ordenacao por insercao em um arquivo contendo registros de funcionarios.
+// Realiza a ordenacao por insercao em um arquivo contendo registros de livros.
 void insertionSort(FILE *arq, FILE *log, int tam) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    // Ponteiros para funcionarios.
-    TFunc *atual;
-    TFunc *proximo;
+    // Ponteiros para livros.
+    TLivro *atual;
+    TLivro *proximo;
     int i = 0;
     int contador = 0;
 
@@ -31,7 +31,7 @@ void insertionSort(FILE *arq, FILE *log, int tam) {
         fseek(arq, (i - 1) * tamanhoRegistro(), SEEK_SET);
         atual = le(arq);
         
-        while ((i > 0) && (atual->cod > proximo->cod)) {
+        while ((i > 0) && (atual->ISBN > proximo->ISBN)) {
             // Posiciona o cursor no registro "i + 1".
             fseek(arq, i * tamanhoRegistro(), SEEK_SET);
             salva(atual, arq);
@@ -52,7 +52,7 @@ void insertionSort(FILE *arq, FILE *log, int tam) {
         salva(proximo, arq);
 
     }
-    // Registra o tempo de fim da execucao do codigo.
+    // Registra o tempo de fim da execucao do ISBNigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Calcula o tempo decorrido pelo programa, encontrando a diferenca entre end e start,

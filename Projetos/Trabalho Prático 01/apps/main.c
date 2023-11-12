@@ -2,23 +2,23 @@
 #include <stdlib.h>
 
 #include "interface.h"
-#include "funcionario.h"
+#include "livro.h"
 
 int main() {
     // Declaracao de ponteiros para arquivo.
-    FILE *arq;
     FILE *livro;
+    FILE *emprestimo;
     FILE *log;
 
     // Abre o arquivo.
-    if ((arq = fopen("funcionario.dat", "w+b")) == NULL || 
-        (log = fopen("log.txt", "w+")) == NULL || 
-        (livro = fopen("livro.dat", "w+b")) == NULL) {
+    if ((livro = fopen("livro.dat", "w+b")) == NULL || 
+        (emprestimo = fopen("emprestimo.dat", "w+b")) == NULL || 
+        (log = fopen("log.txt", "w+")) == NULL) {
         printf("\tErro ao abrir arquivo\n");
         exit(1);
     } else {
         // Inicia o modulo de menu.
-        menuPrincipal(arq, livro, log);
+        menuPrincipal(livro, emprestimo, log);
     }
     return 0;
 }

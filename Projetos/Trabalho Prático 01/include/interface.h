@@ -16,7 +16,7 @@ void imprimirMensagemSair(); // MENSAGEM DE SAIDA DO MODULO.
 
 void menuPrincipal(FILE *arqFunc, FILE *arqLivro, FILE *log); // MODULO DE MENU.
 
-void menuCriarBaseDados(FILE *arqFunc, FILE *arqLivro); // MODULO CRIAR BASE DE DADOS.
+void menuCriarBaseDados(FILE *arq); // MODULO CRIAR BASE DE DADOS.
 
 void menuImprimir(FILE *arqFunc, FILE *arqLivro); // MODULO IMPRIMIR.
 

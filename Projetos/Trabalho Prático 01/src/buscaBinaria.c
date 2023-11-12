@@ -5,29 +5,29 @@
 #include <math.h>
 
 #include "buscaBinaria.h"
-#include "funcionario.h"
+#include "livro.h"
 
-// Realiza uma busca binaria por um funcionario na base de dados.
-TFunc *buscaBinaria(int chave, FILE * in, FILE *log, int inicio, int fim) {
+// Realiza uma busca binaria por um livro na base de dados.
+TLivro *buscaBinaria(int chave, FILE *in, FILE *log, int inicio, int fim) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     // Declaracao de variaveis.
-    TFunc *f = NULL;
-    int cod = -1;
+    TLivro *livro = NULL;
+    int codigo = -1;
     int contador = 0;
 
     fprintf(log, "\n\tBusca Binaria...\n\n");
 
-    while (inicio <= fim && cod != chave) {
+    while (inicio <= fim && codigo != chave) {
         int meio = trunc((inicio + fim) / 2);
         fseek(in, (meio -1) * tamanhoRegistro(), SEEK_SET);
-        f = le(in);
-        cod = f->cod;
+        livro = le(in);
+        codigo = livro->ISBN;
 
-        if (f) {
-            if (cod > chave) {
+        if (livro) {
+            if (codigo > chave) {
                 fim = meio - 1;
             } else {
                 inicio = meio + 1;
@@ -47,9 +47,9 @@ TFunc *buscaBinaria(int chave, FILE * in, FILE *log, int inicio, int fim) {
     // Registra o tempo de CPU consumido pela aplicacao no arquivo de log.
     fprintf(log, "\n\tThe elapsed time is %f seconds\n", time_spent);
 
-    if (cod == chave) {
-        return f;
+    if (codigo == chave) {
+        return livro;
     }
-    free(f);
+    free(livro);
     return NULL;
 }

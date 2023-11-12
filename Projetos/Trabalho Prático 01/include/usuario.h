@@ -5,10 +5,11 @@
 #include <stdlib.h>
 
 typedef struct {
-    char nome[11];
-    char cpf[11];
-    char data_nascimento[11];
+    int ID;
+    char nome[50];
+    char cpf[15];
+    char dataNascimento[11];
     int emprestimos[5];
-} Usuario;
+} TUsuario;
 
 #endif // USUARIO_H_INCLUDED

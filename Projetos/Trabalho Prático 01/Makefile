@@ -10,7 +10,7 @@ LIBS = -l biblioteca -L $(LIB)
 
 all: lib myapps
 
-lib: $(OBJ)/funcionario.o \
+lib: $(OBJ)/livro.o \
 	 $(OBJ)/buscaSequencial.o \
 	 $(OBJ)/buscaBinaria.o \
 	 $(OBJ)/insertionSort.o \

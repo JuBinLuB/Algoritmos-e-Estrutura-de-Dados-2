@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
+#include <math.h>
 
 #include "funcionario.h"
 
@@ -13,10 +14,6 @@ int tamanhoRegistro() {
            + sizeof(char) * 11 // data_nascimento
            + sizeof(double);   // salario
 }
-
-// Retorna a quantidade de registros no arquivo.
-// int tamanhoArquivo(FILE *arq) {
-// }
 
 // Cria funcionario.
 TFunc *funcionario(int cod, char *nome, char *cpf, char *data_nascimento, double salario) {
@@ -62,7 +59,7 @@ TFunc *le(FILE *in) {
 // Imprime funcionario.
 void imprime(TFunc *func) {
     printf("\n\t**********************************************");
-    printf("\n\tFuncionario de codigo ");
+    printf("\n\tFuncionario de codigo: ");
     printf("%d", func->cod);
     printf("\n\tNome: ");
     printf("%s", func->nome);
@@ -75,6 +72,13 @@ void imprime(TFunc *func) {
     printf("\n\t**********************************************\n");
 }
 
+// Retorna a quantidade de registros no arquivo.
+int tamanhoArquivo(FILE *arq) {
+    fseek(arq, 0, SEEK_END);
+    int tam = trunc(ftell(arq) / tamanhoRegistro());
+    return tam;
+}
+
 // Cria a base de dados.
 void criarBase(FILE *out, int tam) {
     int vet[tam];
@@ -83,7 +87,7 @@ void criarBase(FILE *out, int tam) {
     for (int i = 0; i < tam; i++) {
         vet[i] = i + 1;
     }
-    shuffle(vet, tam, (tam * 60) / 100);
+    shuffle(vet, tam, (tam * 2) / 100);
 
     printf("\n\tGerando a base de dados...\n");
     for (int i = 0; i < tam; i++) {

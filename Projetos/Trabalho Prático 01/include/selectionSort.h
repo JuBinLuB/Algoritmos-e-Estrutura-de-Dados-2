@@ -5,6 +5,6 @@
 #include <stdlib.h>
 
 // Realiza a ordenacao por selecao em um arquivo contendo registros de funcionarios.
-void selectionSort(FILE *arq, int tam);
+void selectionSort(FILE *arq, FILE* log, int tam);
 
 #endif // SELECTION_H_INCLUDED

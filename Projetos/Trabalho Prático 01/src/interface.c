@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "interface.h"
-#include "funcionario.h"
+#include "livro.h"
 #include "buscaSequencial.h"
 #include "buscaBinaria.h"
 #include "insertionSort.h"
@@ -24,7 +24,7 @@ void imprimirSubMenu(char *str) {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU %s <<<<<<<<<<<<<<<<<<<<<<<<", str);
     printf("\n\n\t1. LIVRO");
-    printf("  \n\t2. FUNCIONARIO");
+    printf("  \n\t2. EMPRESTIMO");
     printf("  \n\t3. VOLTAR");
 }
 
@@ -52,12 +52,11 @@ void imprimirMensagemSair() {
 }
 
 // Funcao de menu principal.
-void menuPrincipal(FILE *arqFunc, FILE *arqLivro, FILE *log) {
+void menuPrincipal(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
     int opcao = 0;
 
     do {
         imprimirMenuPrincipal();
-
         printf("\n\n\tDigite uma opcao: ");
         fflush(stdin);
         scanf("%d", &opcao);
@@ -67,34 +66,34 @@ void menuPrincipal(FILE *arqFunc, FILE *arqLivro, FILE *log) {
             /**
                 Codigo para opcao de menu Criar Base de Dados.
             */
-            imprimirSubMenu("CRIAR BASE DE DADOS");
-            menuCriarBaseDados(arqFunc, arqLivro);
+            menuCriarBaseDados(arqLivros);
             break;
         case 2:
             /**
                 Codigo para opcao de menu Imprimir.
             */
             imprimirSubMenu("IMPRIMIR");
-            menuImprimir(arqFunc, arqLivro);
+            menuImprimir(arqLivros, arqEmprestimos);
             break;
         case 3:
             /**
                 Codigo para opcao de menu Buscar.
             */
             imprimirSubMenu("BUSCAR");
-            menuBuscar(arqFunc, arqLivro, log);
+            menuBuscar(arqLivros, arqEmprestimos, log);
             break;
         case 4:
             /**
                 Codigo para opcao de menu Emprestimo.
             */
+            // realizarEmprestimo();
             break;
         case 5:
             /**
                 Codigo para opcao de menu Ordenar.
             */
             imprimirSubMenu("ORDENAR");
-            menuOrdenar(arqFunc, arqLivro, log);
+            menuOrdenar(arqLivros, arqEmprestimos, log);
             break;
         case 6:
             /**
@@ -111,44 +110,21 @@ void menuPrincipal(FILE *arqFunc, FILE *arqLivro, FILE *log) {
     } while (opcao != 6);
 }
 
-void menuCriarBaseDados(FILE *arqFunc, FILE *arqLivro) {
-    int opcao = 0;
-    int tam = 0;
-    
-    printf("\n\n\tDigite uma opcao: ");
-    fflush(stdin);
-    scanf("%d", &opcao);
+void menuCriarBaseDados(FILE *arq) {
     system("cls");
+    int tam = 0;
 
-    switch (opcao) {
-    case 1:
-        printf("\tCriando base de dados de livros...\n");
-        printf("\n\tInforme o tamanho da base de dados: ");
-        fflush(stdin);
-        scanf("%d", &tam);
+    printf("\tCriando base de dados de livros...\n");
+    printf("\n\tInforme o tamanho da base de dados: ");
+    fflush(stdin);
+    scanf("%d", &tam);
 
-        // Cria uma base de dados contendo "n" livros.
-        criarBase(arqLivro, tam);
-        break;
-    case 2:
-        printf("\tCriando base de dados de funcionarios...\n");
-        printf("\n\tInforme o tamanho da base de dados: ");
-        fflush(stdin);
-        scanf("%d", &tam);
-        
-        // Cria uma base de dados contendo "n" funcionarios.
-        criarBase(arqFunc, tam);
-        break;
-    case 3:
-        break;
-    default:
-        // Codigo para opcao de menu Invalida.
-        imprimirMensagemOpcaoInvalida();
-    }
+    // Cria uma base de dados contendo "n" livros.
+    criarBase(arq, tam);
 }
 
 // Funcao de submenu para a opcao de IMPRIMIR.
-void menuImprimir(FILE *arqFunc, FILE *arqLivro) {
+void menuImprimir(FILE *arqLivros, FILE *arqEmprestimos) {
     int opcao = 0;
 
     printf("\n\n\tDigite uma opcao: ");
@@ -159,19 +135,19 @@ void menuImprimir(FILE *arqFunc, FILE *arqLivro) {
     switch (opcao) {
     case 1:
         // Codigo para opcao de menu Livro.
-        if (tamanhoArquivo(arqLivro) == 0) {
+        if (tamanhoArquivo(arqLivros) == 0) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
-            imprimirBase(arqLivro);
+            imprimirBase(arqLivros);
         }
         system("pause");
         break;
     case 2:
-        // Codigo para opcao de menu Funcionario.
-        if (tamanhoArquivo(arqFunc) == 0) {
+        // Codigo para opcao de menu Emprestimo.
+        if (tamanhoArquivo(arqEmprestimos) == 0) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
-            imprimirBase(arqFunc);
+            imprimirBase(arqEmprestimos);
         }
         system("pause");
         break;
@@ -184,7 +160,7 @@ void menuImprimir(FILE *arqFunc, FILE *arqLivro) {
 }
 
 // Funcao de submenu para a opcao de BUSCAR.
-void menuBuscar(FILE *arqFunc, FILE *arqLivro, FILE *log) {
+void menuBuscar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
     int opcao = 0;
 
     printf("\n\n\tDigite uma opcao: ");
@@ -195,13 +171,13 @@ void menuBuscar(FILE *arqFunc, FILE *arqLivro, FILE *log) {
     case 1:
         // Codigo para opcao de menu Buscar Livro.
         imprimirSubMenuBuscar();
-        subMenuBuscar(arqLivro, log, "Livro");
+        subMenuBuscar(arqLivros, log, "Livro");
         system("pause");
         break;
     case 2:
-        // Codigo para opcao de menu Buscar Funcionario.
+        // Codigo para opcao de menu Buscar Emprestimo.
         imprimirSubMenuBuscar();
-        subMenuBuscar(arqFunc, log, "Funcionario");
+        subMenuBuscar(arqEmprestimos, log, "Emprestimo");
         system("pause");
         break;
     case 3:
@@ -218,9 +194,9 @@ void subMenuBuscar(FILE *arq, FILE *log, char *str) {
         system("cls");
         printf("\n\n\tBase de dados vazia.\n\n");
     } else {
-        TFunc *f = NULL;
+        TLivro *livro = NULL;
         int opcao = 0;
-        int codigo = 0;
+        int ISBN = 0;
 
         printf("\n\n\tDigite uma opcao: ");
         fflush(stdin);
@@ -231,14 +207,14 @@ void subMenuBuscar(FILE *arq, FILE *log, char *str) {
         case 1:
             // Codigo de menu Buscar Sequencial.
             printf("\n\tBusca Sequencial...\n");
-            printf("\n\tDigite o codigo: ");
+            printf("\n\tDigite o ISBN: ");
             fflush(stdin);
-            scanf("%d", &codigo);
+            scanf("%d", &ISBN);
 
-            f = buscaSequencial(codigo, arq, log);
+            livro = buscaSequencial(ISBN, arq, log);
             
-            if (f) {
-                imprime(f);
+            if (livro) {
+                imprime(livro);
             } else {
                 printf("\n\t%s nao encontrado!\n", str);
             }
@@ -247,12 +223,12 @@ void subMenuBuscar(FILE *arq, FILE *log, char *str) {
             // Codigo de menu Buscar Binario.
             printf("\n\tBusca Binaria...\n");
             printf("\n\tDigite o codigo: ");
-            scanf("%d", &codigo);
+            scanf("%d", &ISBN);
 
-            f = buscaBinaria(codigo, arq, log, 0, tamanhoArquivo(arq));
+            livro = buscaBinaria(ISBN, arq, log, 0, tamanhoArquivo(arq));
 
-            if (f) {
-                imprime(f);
+            if (livro) {
+                imprime(livro);
             } else {
                 printf("\n\t%s nao encontrado!\n", str);
             }
@@ -263,12 +239,12 @@ void subMenuBuscar(FILE *arq, FILE *log, char *str) {
             // Codigo para opcao de menu Invalida.
             imprimirMensagemOpcaoInvalida();
         }
-        free(f);
+        free(livro);
     }
 }
 
 // Funcao de submenu para a opcao de ORDENAR.
-void menuOrdenar(FILE *arqFunc, FILE *arqLivro, FILE *log) {
+void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
     int opcao = 0;
 
     printf("\n\n\tDigite uma opcao: ");
@@ -279,23 +255,23 @@ void menuOrdenar(FILE *arqFunc, FILE *arqLivro, FILE *log) {
     switch (opcao) {
     case 1:
         // Codigo para opcao de menu Ordenar Livro.
-        if (tamanhoArquivo(arqLivro) == 0) {
+        if (tamanhoArquivo(arqLivros) == 0) {
             printf("\n\tBase de dados vazia.\n\n");
         } else {
             printf("\n\tOrdenando arquivo...\n\n");
-            insertionSort(arqLivro, log, tamanhoArquivo(arqLivro));
+            insertionSort(arqLivros, log, tamanhoArquivo(arqLivros));
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
         system("pause");
         break;
     case 2:
-        // Codigo para opcao de menu Ordenar Funcionario.
-        if (tamanhoArquivo(arqFunc) == 0) {
+        // Codigo para opcao de menu Ordenar Emprestimo.
+        if (tamanhoArquivo(arqEmprestimos) == 0) {
             printf("\n\tBase de dados vazia.\n\n");
         } else {
             printf("\n\tOrdenando arquivo...\n\n");
-            insertionSort(arqFunc, log, tamanhoArquivo(arqFunc));
+            insertionSort(arqEmprestimos, log, tamanhoArquivo(arqEmprestimos));
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
