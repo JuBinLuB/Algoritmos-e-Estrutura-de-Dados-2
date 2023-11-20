@@ -5,10 +5,7 @@
 #include "emprestimo.h"
 #include "livro.h"
 #include "usuario.h"
-#include "buscaSequencial.h"
 #include "buscaBinaria.h"
-
-#define TAMANHO_ARQUIVO_PEQUENO 1
 
 // Funcao para realizar emprestimo de um livro para um usuario.
 void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
@@ -34,9 +31,6 @@ void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
             // Realiza o cadastro dos dados do usuario.
             printf("\n\tCadastrando o usuario...\n\n");
             obterDadosUsuario(&ID, nome, dataNascimento);
-
-            // printf("\n\tInsira o ID do usuario: ");
-            // scanf("%d", &ID);
 
             u = buscaBinariaU(ID, arqEmprestimos, NULL, 0, tamanhoArquivoU(arqEmprestimos));
 
