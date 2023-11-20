@@ -21,7 +21,7 @@ void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
     scanf("%d", &ISBN);
 
     livro = buscaBinariaL(ISBN, arqLivros, NULL, 0, tamanhoArquivoL(arqLivros));
-
+    
     system("cls");
 
     // Verificar se o livro existe na base de dados.
