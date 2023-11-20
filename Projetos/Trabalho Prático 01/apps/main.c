@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include "interface.h"
-#include "livro.h"
 
 int main() {
     // Declaracao de ponteiros para arquivo.

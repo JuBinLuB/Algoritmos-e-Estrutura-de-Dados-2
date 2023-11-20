@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Gera datas aleatórias no formato "DD/MM/AAAA".
+// Gera datas aleatorias no formato "DD/MM/AAAA".
 void gerarDataAleatoria(char *data);
 
 #endif // RANDOMIZER_H_INCLUDED

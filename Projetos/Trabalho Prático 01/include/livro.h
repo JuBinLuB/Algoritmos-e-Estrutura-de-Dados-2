@@ -9,26 +9,27 @@ typedef struct {
     char titulo[50];
     char autor[50];
     char dataPublicacao[11];
+    int emprestado;
 } TLivro;
 
 // Retorna tamanho do livro em bytes.
-int tamanhoRegistro();
+int tamanhoRegistroL();
 
 // Retorna a quantidade de registros no arquivo.
-int tamanhoArquivo(FILE *arq);
+int tamanhoArquivoL(FILE *arq);
 
 // Cria livro.
 TLivro *livro(int ISBN, char *titulo, char *autor, char *dataPublicacao);
 
 // Salva livro no arquivo out, na posicao atual do cursor.
-void salva(TLivro *func, FILE *out);
+void salvaL(TLivro *livro, FILE *out);
 
 // Le um livro do arquivo in na posicao atual do cursor.
 // Retorna um ponteiro para livro lido do arquivo.
-TLivro *le(FILE *in);
+TLivro *leL(FILE *in);
 
 // Imprime livro.
-void imprime(TLivro *func);
+void imprimeL(TLivro *livro);
 
 // Cria base de dados.
 void criarBase(FILE *out, int tam);
@@ -36,7 +37,10 @@ void criarBase(FILE *out, int tam);
 // Embaralha base de dados.
 void shuffle(int *vet, int MAX, int MIN);
 
+// Cria base de dados ordenada.
+void criarBaseOrdenada(FILE *out, int tam);
+
 // Imprime base de dados.
-void imprimirBase(FILE *out);
+void imprimirBaseL(FILE *out);
 
 #endif // LIVRO_H_INCLUDED
