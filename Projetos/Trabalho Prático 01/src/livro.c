@@ -17,6 +17,13 @@ int tamanhoRegistroL() {
            + sizeof(int);       // emprestado
 }
 
+// Retorna a quantidade de registros no arquivo.
+int tamanhoArquivoL(FILE *arq) {
+    fseek(arq, 0, SEEK_END);
+    int tam = trunc(ftell(arq) / tamanhoRegistroL());
+    return tam;
+}
+
 // Cria livro.
 TLivro *livro(int ISBN, char *titulo, char *autor, char *dataPublicacao) {
     TLivro *livro = (TLivro *)malloc(sizeof(TLivro));
@@ -76,13 +83,6 @@ void imprimeL(TLivro *livro) {
         printf("Disponivel");
     }
     printf("\n\t**********************************************\n");
-}
-
-// Retorna a quantidade de registros no arquivo.
-int tamanhoArquivoL(FILE *arq) {
-    fseek(arq, 0, SEEK_END);
-    int tam = trunc(ftell(arq) / tamanhoRegistroL());
-    return tam;
 }
 
 // Cria a base de dados.

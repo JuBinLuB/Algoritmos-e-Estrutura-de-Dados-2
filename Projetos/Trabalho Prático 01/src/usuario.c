@@ -14,6 +14,13 @@ int tamanhoRegistroU() {
            + sizeof(TLivro);    // emprestimo 
 }
 
+// Retorna a quantidade de registros no arquivo.
+int tamanhoArquivoU(FILE *arq) {
+    fseek(arq, 0, SEEK_END);
+    int tam = trunc(ftell(arq) / tamanhoRegistroU());
+    return tam;
+}
+
 // Cria usuario.
 TUsuario *usuario(int ID, char *nome, char *dataNascimento) {
     TUsuario *usuario = (TUsuario *)malloc(sizeof(TUsuario));
@@ -67,15 +74,8 @@ void imprimeU(TUsuario *usuario) {
     printf("\n\tTitulo: %s", usuario->emprestimo.titulo);
     printf("\n\tAutor: %s", usuario->emprestimo.autor);
     printf("\n\tData de Publicacao: %s", usuario->emprestimo.dataPublicacao);
-    printf("\n\t-----------------------------------------");
+    printf("\n\t-------------------------------------------");
     printf("\n\t**********************************************\n");
-}
-
-// Retorna a quantidade de registros no arquivo.
-int tamanhoArquivoU(FILE *arq) {
-    fseek(arq, 0, SEEK_END);
-    int tam = trunc(ftell(arq) / tamanhoRegistroU());
-    return tam;
 }
 
 // Imprime a base de dados.
