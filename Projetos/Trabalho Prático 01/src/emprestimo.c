@@ -9,6 +9,7 @@
 
 // Funcao para realizar emprestimo de um livro para um usuario.
 void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
+    // Declaracao de variaveis.
     TLivro *livro = NULL;
     TUsuario *u = NULL;
     int ISBN;
@@ -20,8 +21,10 @@ void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
     printf("\n\tInforme o ISBN do livro a ser emprestado: ");
     scanf("%d", &ISBN);
 
+     // Realiza a busca binaria do livro pelo ISBN.
     livro = buscaBinariaL(ISBN, arqLivros, NULL, 0, tamanhoArquivoL(arqLivros));
     
+    // Limpa a tela.
     system("cls");
 
     // Verificar se o livro existe na base de dados.
@@ -32,10 +35,12 @@ void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
             printf("\n\tCadastrando o usuario...\n\n");
             obterDadosUsuario(&ID, nome, dataNascimento);
 
+            // Busca o usuario pelo ID.
             u = buscaBinariaU(ID, arqEmprestimos, NULL, 0, tamanhoArquivoU(arqEmprestimos));
 
             // Cadastra o usuario caso o mesmo nao exista.
             if (u == NULL) {
+                // Cria um usuario.
                 u = usuario(ID, nome, dataNascimento);
                 
                 // Realiza o emprestimo.
@@ -50,6 +55,7 @@ void realizarEmprestimo(FILE *arqLivros, FILE *arqEmprestimos) {
                 fseek(arqEmprestimos, 0, SEEK_CUR);
                 salvaU(u, arqEmprestimos);
 
+                // Limpa a tela.
                 system("cls");
                 printf("\n\tEmprestimo realizado com sucesso!\n");
             } else {
