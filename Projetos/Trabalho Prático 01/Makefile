@@ -15,8 +15,8 @@ lib: $(OBJ)/livro.o \
 	 $(OBJ)/emprestimo.o \
 	 $(OBJ)/buscaSequencial.o \
 	 $(OBJ)/buscaBinaria.o \
-	 $(OBJ)/insertionSort.o \
 	 $(OBJ)/interface.o \
+	 $(OBJ)/classificacao.o \
 	 $(OBJ)/randomizer.o
 	ar -rcs $(LIB)/libbiblioteca.a $(OBJ)/*.o
 

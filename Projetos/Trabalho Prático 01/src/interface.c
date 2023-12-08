@@ -8,6 +8,7 @@
 #include "buscaBinaria.h"
 #include "insertionSort.h"
 #include "emprestimo.h"
+#include "classificacao.h"
 
 // Funcao para imprimir o menu principal.
 void imprimirMenuPrincipal() {
@@ -357,8 +358,8 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
         if (tamanhoArquivoL(arqLivros) == 0) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
-            printf("\n\tOrdenando arquivo...\n\n");
-            insertionSortL(arqLivros, log, tamanhoArquivoL(arqLivros));
+            printf("\n\tOrdenando arquivo de Livros...\n\n");
+            selecaoSubstituicao(arqLivros, log, 6);
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
@@ -369,8 +370,8 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
         if (tamanhoArquivoU(arqEmprestimos) == 0) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
-            printf("\n\tOrdenando arquivo...\n\n");
-            insertionSortU(arqEmprestimos, log, tamanhoArquivoU(arqEmprestimos));
+            printf("\n\tOrdenando arquivo de Emprestimos...\n\n");
+            selecaoSubstituicao(arqEmprestimos, log, 6);
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
