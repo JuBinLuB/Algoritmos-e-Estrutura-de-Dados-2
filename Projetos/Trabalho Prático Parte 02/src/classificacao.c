@@ -4,7 +4,6 @@
 #include "string.h"
 
 #include "classificacao.h"
-#include "livro.h"
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao para livros.
 int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
@@ -56,7 +55,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
         // Verifica se ha registros nao congelados para criar uma nova particao.
         if (existemNaoCongelados(congelados, M)) {
             // - Abre um arquivo binario para gravacao.
-            out = fopen(nomeParticao, "wb");
+            out = fopen(nomeParticao, "wb+");
             if (out == NULL) {
                 perror("Erro ao abrir novo arquivo de saida.");
                 exit(EXIT_FAILURE);
@@ -95,7 +94,18 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
 
             // 4. Substituir, no array em memoria, o registro "r" pelo proximo registro do arquivo de entrada.
             ultimaChaveGravada = menorISBN;
-            if ((livro[indiceR] = leL(in)) == NULL) {
+
+            // Posiciona o cursor no registro a ser lido.
+            fseek(in, totalRegistrosLidos * tamanhoRegistroL(), SEEK_SET);
+
+            // Le o proximo registro do arquivo de entrada.
+            TLivro *proximoRegistro = leL(in);
+
+            // Verifica se ha mais registros para serem lidos no arquivo.
+            if (proximoRegistro != NULL) {
+                // Substitui o registro atual no array pelo proximo registro lido do arquivo.
+                livro[indiceR] = proximoRegistro;
+            } else {
                 // Marca a posicao no array como NULL se nao ha mais registros para ler.
                 livro[indiceR] = NULL;
             }
@@ -197,7 +207,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
         // Verifica se ha registros nao congelados para criar uma nova particao.
         if (existemNaoCongelados(congelados, M)) {
             // - Abre um arquivo binario para gravacao.
-            out = fopen(nomeParticao, "wb");
+            out = fopen(nomeParticao, "wb+");
             if (out == NULL) {
                 perror("Erro ao abrir novo arquivo de saida.");
                 exit(EXIT_FAILURE);
@@ -236,7 +246,18 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
 
             // 4. Substituir, no array em memoria, o registro "r" pelo proximo registro do arquivo de entrada.
             ultimaChaveGravada = menorID;
-            if ((usuario[indiceR] = leU(in)) == NULL) {
+            
+            // Posiciona o cursor no registro a ser lido.
+            fseek(in, totalRegistrosLidos * tamanhoRegistroU(), SEEK_SET);
+
+            // Le o proximo registro do arquivo de entrada.
+            TUsuario *proximoRegistro = leU(in);
+            
+            // Verifica se ha mais registros para serem lidos no arquivo.
+            if (proximoRegistro != NULL) {
+                // Substitui o registro atual no array pelo proximo registro lido do arquivo.
+                usuario[indiceR] = proximoRegistro;
+            } else {
                 // Marca a posicao no array como NULL se nao ha mais registros para ler.
                 usuario[indiceR] = NULL;
             }
