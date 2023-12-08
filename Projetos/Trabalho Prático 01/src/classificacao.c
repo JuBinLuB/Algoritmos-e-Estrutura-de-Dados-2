@@ -84,9 +84,9 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
                 if (livro[i]->ISBN < menorISBN) {
                     // Atualiza menorISBN com o ISBN do livro atual.
                     menorISBN = livro[i]->ISBN;
-                    // Atualiza registroR para o livro com o menor ISBN.
+                    // Atualiza "registroR" para o livro com o menor ISBN.
                     registroR = livro[i];
-                    // Atualiza a variável "r" para o indice do livro com o menor ISBN.
+                    // Atualiza a variavel "indiceR" para o indice do livro com o menor ISBN.
                     indiceR = i;
                 }
             }
@@ -225,9 +225,9 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
                 if (usuario[i]->ID < menorID) {
                     // Atualiza menorID com o ID do usuario atual.
                     menorID = usuario[i]->ID;
-                    // Atualiza registroR para o usuario com o menor ID.
+                    // Atualiza "registroR" para o usuario com o menor ID.
                     registroR = usuario[i];
-                    // Atualiza a variável "r" para o indice do usuario com o menor ID.
+                    // Atualiza a variavel "indiceR" para o indice do usuario com o menor ID.
                     indiceR = i;
                 }
             }
