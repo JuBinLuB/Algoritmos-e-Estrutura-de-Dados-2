@@ -164,7 +164,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
     int totalParticoes = 0;
     int totalRegistrosLidos = 0;
     int ultimaChaveGravada = 0;
-    int totalRegistros = tamanhoArquivoL(in);
+    int totalRegistros = tamanhoArquivoU(in);
     int congelados[M];
 
     // Preenche o vetor congelados com zeros.

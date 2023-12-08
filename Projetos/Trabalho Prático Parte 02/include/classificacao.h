@@ -7,10 +7,10 @@
 #include "livro.h"
 #include "usuario.h"
 
-// Executa o algoritmo de geracao de particoes por Selecao com Substituicao.
+// Executa o algoritmo de geracao de particoes por Selecao com Substituicao para livros.
 int selecaoSubstituicaoL(FILE *arq, FILE *log, int M);
 
-// Executa o algoritmo de geracao de particoes por Selecao com Substituicao.
+// Executa o algoritmo de geracao de particoes por Selecao com Substituicao para usuarios.
 int selecaoSubstituicaoU(FILE *arq, FILE *log, int M);
 
 // Verifica se ha pelo menos um registro nao congelado.
