@@ -62,7 +62,7 @@ TLivro *buscaBinariaL(int chave, FILE *in, FILE *log, int inicio, int fim) {
             fprintf(log, "\tComparacoes: %d\n", contador);
         }
     }
-    // Registra o tempo de fim da execucao do código.
+    // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Calcula o tempo decorrido pelo programa, encontrando a diferenca entre end e start,
@@ -135,7 +135,7 @@ TUsuario *buscaBinariaU(int chave, FILE *in, FILE *log, int inicio, int fim) {
             fprintf(log, "\tComparacoes: %d\n", contador);
         }
     }
-    // Registra o tempo de fim da execucao do código.
+    // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Calcula o tempo decorrido pelo programa, encontrando a diferenca entre end e start,

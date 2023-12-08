@@ -5,14 +5,21 @@
 #include <stdlib.h>
 
 #include "livro.h"
+#include "usuario.h"
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao.
-int selecaoSubstituicao(FILE *arq, FILE *log, int M);
+int selecaoSubstituicaoL(FILE *arq, FILE *log, int M);
+
+// Executa o algoritmo de geracao de particoes por Selecao com Substituicao.
+int selecaoSubstituicaoU(FILE *arq, FILE *log, int M);
 
 // Verifica se ha pelo menos um registro nao congelado.
 int existemNaoCongelados(int *congelados, int n);
 
-// Libera a memoria alocada para os registros em memoria.
-void liberarRegistros(TLivro **livro, int M);
+// Libera a memoria alocada para os registros de livros em memoria.
+void liberarRegistrosL(TLivro **livro, int M);
+
+// Libera a memoria alocada para os registros de usuarios em memoria.
+void liberarRegistrosU(TUsuario **usuario, int M);
 
 #endif // CLASSIFICACAO_H_INCLUDED

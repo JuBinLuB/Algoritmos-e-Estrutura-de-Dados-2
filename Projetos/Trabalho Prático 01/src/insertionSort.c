@@ -53,7 +53,7 @@ void insertionSortL(FILE *arq, FILE *log, int tam) {
         salvaL(proximo, arq);
 
     }
-    // Registra o tempo de fim da execucao do ISBNigo.
+    // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Calcula o tempo decorrido pelo programa, encontrando a diferenca entre end e start,
@@ -114,7 +114,7 @@ void insertionSortU(FILE *arq, FILE *log, int tam) {
         salvaU(proximo, arq);
 
     }
-    // Registra o tempo de fim da execucao do ISBNigo.
+    // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Calcula o tempo decorrido pelo programa, encontrando a diferenca entre end e start,

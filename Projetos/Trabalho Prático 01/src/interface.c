@@ -359,7 +359,9 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
             printf("\n\tOrdenando arquivo de Livros...\n\n");
-            selecaoSubstituicao(arqLivros, log, 6);
+
+            selecaoSubstituicaoL(arqLivros, log, 6);
+
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
@@ -371,7 +373,9 @@ void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log) {
             printf("\n\tBase de dados vazia...\n\n");
         } else {
             printf("\n\tOrdenando arquivo de Emprestimos...\n\n");
-            selecaoSubstituicao(arqEmprestimos, log, 6);
+
+            selecaoSubstituicaoU(arqEmprestimos, log, 6);
+
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
         }
