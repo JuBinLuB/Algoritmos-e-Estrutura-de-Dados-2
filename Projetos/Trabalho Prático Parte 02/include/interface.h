@@ -12,6 +12,8 @@ void imprimirSubMenu(char *str); // MENSAGEM PARA EXIBIR O MENU DE BUSCA.
 
 void imprimirSubMenuBuscar(); // MENSAGEM PARA EXIBIR O SUB MENU DE BUSCA.
 
+void imprimirSubMenuOrdenar(); // MENSAGEM PARA EXIBIR O SUB MENU DE ORDENAR.
+
 void imprimirMensagemOpcaoInvalida(); // MENSAGEM DE ALERTA DE DIGITO INVALIDO.
 
 void imprimirMensagemSair(); // MENSAGEM DE SAIDA DO MODULO.
@@ -29,5 +31,9 @@ void subMenuBuscarLivro(FILE *arqLivros, FILE* log); // MODULO DE SUB MENU BUSCA
 void subMenuBuscarEmprestimo(FILE *arqEmprestimos, FILE* log); // MODULO DE SUB MENU BUSCAR EMPRESTIMO.
 
 void menuOrdenar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log); // MODULO DE ORDENAR.
+
+void subMenuOrdenarLivro(FILE *arqLivros, FILE *log); // MODULO DE SUB MENU ORDENAR LIVRO.
+
+void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log); // MODULO DE SUB MENU ORDENAR EMPRESTIMO.
 
 # endif // INTERFACE_H_INCLUDED

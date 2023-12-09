@@ -16,6 +16,7 @@ lib: $(OBJ)/livro.o \
 	 $(OBJ)/buscaSequencial.o \
 	 $(OBJ)/buscaBinaria.o \
 	 $(OBJ)/interface.o \
+	 $(OBJ)/selectionSort.o \
 	 $(OBJ)/classificacao.o \
 	 $(OBJ)/randomizer.o
 	ar -rcs $(LIB)/libbiblioteca.a $(OBJ)/*.o

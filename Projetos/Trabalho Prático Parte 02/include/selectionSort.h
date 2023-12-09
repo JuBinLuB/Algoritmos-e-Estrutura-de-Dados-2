@@ -4,7 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Realiza a ordenacao por selecao em um arquivo contendo registros de funcionarios.
-void selectionSort(FILE *arq, FILE* log, int tam);
+// Realiza a ordenacao por selecao em um arquivo contendo registros de livros.
+void selectionSortL(FILE *arq, FILE* log, int tam);
+
+// Realiza a ordenacao por selecao em um arquivo contendo registros de usuarios.
+void selectionSortU(FILE *arq, FILE* log, int tam);
 
 #endif // SELECTION_H_INCLUDED
