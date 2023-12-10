@@ -24,7 +24,7 @@ TLivro *buscaBinariaL(int chave, FILE *in, FILE *log, int inicio, int fim) {
     }
 
     // Verifica se existe apenas um registro no arquivo.
-    if (tamanhoArquivoU(in) <= 1) {
+    if (tamanhoArquivoL(in) <= 1) {
         // Se houver apenas um registro, realiza uma busca direta.
         fseek(in, 0, SEEK_SET);
         livro = leL(in);
