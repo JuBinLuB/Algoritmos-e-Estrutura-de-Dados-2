@@ -35,4 +35,7 @@ void imprimeU(TUsuario *usuario);
 // Imprime a base de dados.
 void imprimirBaseU(FILE *out);
 
+// Libera a memoria alocada para os registros de um vetor de usuarios em memoria.
+void liberarRegistrosU(TUsuario **usuario, int M);
+
 #endif // USUARIO_H_INCLUDED

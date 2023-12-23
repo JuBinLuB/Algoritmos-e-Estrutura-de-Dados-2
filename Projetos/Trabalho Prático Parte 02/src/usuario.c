@@ -90,3 +90,12 @@ void imprimirBaseU(FILE *out) {
     printf("\n\tFim da base de dados...\n\n");
     free(u);
 }
+
+// Libera a memoria alocada para os registros de um vetor de usuarios em memoria.
+void liberarRegistrosU(TUsuario **usuario, int M) {
+    for (int i = 0; i < M; i++) {
+        if (usuario[i] != NULL) {
+            free(usuario[i]);
+        }
+    }
+}

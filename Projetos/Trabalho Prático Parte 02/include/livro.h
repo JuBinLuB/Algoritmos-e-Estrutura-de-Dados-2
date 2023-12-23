@@ -43,4 +43,7 @@ void criarBaseOrdenada(FILE *out, int tam);
 // Imprime base de dados.
 void imprimirBaseL(FILE *out);
 
+// Libera a memoria alocada para os registros de um vetor de livros em memoria.
+void liberarRegistrosL(TLivro **livro, int M);
+
 #endif // LIVRO_H_INCLUDED

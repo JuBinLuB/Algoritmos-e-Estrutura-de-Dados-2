@@ -153,3 +153,12 @@ void imprimirBaseL(FILE *out) {
     printf("\n\tFim da base de dados...\n\n");
     free(l);
 }
+
+// Libera a memoria alocada para os registros de um vetor de livros em memoria.
+void liberarRegistrosL(TLivro **livro, int M) {
+    for (int i = 0; i < M; i++) {
+        if (livro[i] != NULL) {
+            free(livro[i]);
+        }
+    }
+}

@@ -320,21 +320,3 @@ int existemNaoCongelados(int *congelados, int n) {
     // Retorna 0 se todos os registros estiverem congelados.
     return 0;
 }
-
-// Libera a memoria alocada para os registros de livros em memoria.
-void liberarRegistrosL(TLivro **livro, int M) {
-    for (int i = 0; i < M; i++) {
-        if (livro[i] != NULL) {
-            free(livro[i]);
-        }
-    }
-}
-
-// Libera a memoria alocada para os registros de usuarios em memoria.
-void liberarRegistrosU(TUsuario **usuario, int M) {
-    for (int i = 0; i < M; i++) {
-        if (usuario[i] != NULL) {
-            free(usuario[i]);
-        }
-    }
-}

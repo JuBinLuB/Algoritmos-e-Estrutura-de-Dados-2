@@ -16,10 +16,4 @@ int selecaoSubstituicaoU(FILE *arq, FILE *log, int M);
 // Verifica se ha pelo menos um registro nao congelado.
 int existemNaoCongelados(int *congelados, int n);
 
-// Libera a memoria alocada para os registros de livros em memoria.
-void liberarRegistrosL(TLivro **livro, int M);
-
-// Libera a memoria alocada para os registros de usuarios em memoria.
-void liberarRegistrosU(TUsuario **usuario, int M);
-
 #endif // CLASSIFICACAO_H_INCLUDED
