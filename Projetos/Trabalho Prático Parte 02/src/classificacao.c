@@ -28,7 +28,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
     // Preenche o vetor congelados com zeros.
     memset(congelados, 0, sizeof(congelados));
     
-    // Variavel para armazenar os M registros em memoria.
+    // Array para armazenar os M registros em memoria.
     TLivro *livro[M];
 
     fprintf(log, "\n\tSelecao com Substituicao Livros...\n\n");
@@ -180,7 +180,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
     // Preenche o vetor congelados com zeros.
     memset(congelados, 0, sizeof(congelados));
     
-    // Variavel para armazenar os M registros em memoria.
+    // Array para armazenar os M registros em memoria.
     TUsuario *usuario[M];
 
     fprintf(log, "\n\tSelecao com Substituicao Usuarios...\n\n");
