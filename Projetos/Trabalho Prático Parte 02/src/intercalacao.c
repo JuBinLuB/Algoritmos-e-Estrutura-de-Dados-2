@@ -24,14 +24,17 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
     TVetor vetor[F];
     int particoesLidas = 0;
     int particoesGeradas = 0;
+    int particoesProcessadas = F - 1;
+    int particoesAtualizadas = 1;
+    int numParticoes = totalParticoes;
     char nomeParticao[20];
 
     fprintf(log, "\n\tIntercalacao Livros...\n\n");
 
     // Loop principal para intercalacao de particoes.
-    while (particoesLidas <= (totalParticoes + particoesGeradas)) {
+    while (numParticoes > 1) {
         // Abre "F - 1" arquivos de entrada.
-        for (int i = 0; i < F; i++) {
+        for (int i = 0; i < F - 1; i++) {
             // Gera o nome do arquivo da proxima particao a ser lida.
             sprintf(nomeParticao, "particao%d.dat", particoesLidas);
 
@@ -59,17 +62,17 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             // Incrementa o numero de particoes lidas.
             particoesLidas++;
         }
-        // Incrementa o numero de particoes geradas.
-        particoesGeradas++;
-
         // Gera o nome do arquivo da proxima particao a ser gerada.
         sprintf(nomeParticao, "particao%d.dat", totalParticoes + particoesGeradas);
 
+        // Incrementa o numero de particoes geradas.
+        particoesGeradas++;
+
         // Abre o arquivo de saida, no formato binario para escrita.
-        vetor[F].arquivo = fopen(nomeParticao, "wb+");
+        vetor[F - 1].arquivo = fopen(nomeParticao, "wb+");
 
         // Verifica se houve erro na abertura do arquivo de saida.
-        if (vetor[F].arquivo == NULL) {
+        if (vetor[F - 1].arquivo == NULL) {
             perror("Erro ao abrir novo arquivo de saida.");
             exit(EXIT_FAILURE);
         }
@@ -83,7 +86,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             int indiceMenor = 0;
 
             // Encontrar o menor registro entre as particoes.
-            for (int i = 0; i < F; i++) {
+            for (int i = 0; i < F - 1; i++) {
                 // Verifica se o arquivo atual nao esta vazio.
                 if (vetor[i].arquivo != NULL) {
                     // Verifica se o ISBN do livro atual e' menor do que o menor ISBN encontrado ate agora.
@@ -103,10 +106,10 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             }
 
             // Posiciona o cursor no inicio da posicao de saida no arquivo de saida.
-            fseek(vetor[F].arquivo, posicaoSaida * tamanhoRegistroL(), SEEK_SET);
+            fseek(vetor[F - 1].arquivo, posicaoSaida * tamanhoRegistroL(), SEEK_SET);
 
             // Grava o registro de menor ISBN na particao de saida.
-            salvaL(vetor[indiceMenor].livro, vetor[F].arquivo);
+            salvaL(vetor[indiceMenor].livro, vetor[F - 1].arquivo);
 
             // Incrementa a posicao no arquivo da particao de onde o registro foi lido.
             vetor[indiceMenor].posicao++;
@@ -129,12 +132,21 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
                 vetor[indiceMenor].livro = livro(INT_MAX, "", "", "");
             }
         }
+        // Atualiza o numero de particoes restantes.
+        numParticoes = numParticoes + particoesAtualizadas - particoesProcessadas;
+
+        fprintf(log, "\ttotalParticoes value: %d\n", totalParticoes);
+        fprintf(log, "\tparticoesGeradas value: %d\n", particoesGeradas);
+        fprintf(log, "\tparticoesLidas value: %d\n", particoesLidas);
+        fprintf(log, "\tparticoesProcessadas value: %d\n", particoesProcessadas);
+        fprintf(log, "\tparticoesAtualizadas value: %d\n", particoesAtualizadas);
+        fprintf(log, "\tnumParticoes value: %d\n\n", numParticoes);
     }
     // Atualiza o ponteiro para o arquivo de saida.
-    *out = vetor[F].arquivo;
+    *out = vetor[F - 1].arquivo;
 
     // Fecha os arquivos das particoes de entrada e libera memoria alocada para cada livro.
-    for (int i = 0; i < F; i++) {
+    for (int i = 0; i < F - 1; i++) {
         fclose(vetor[i].arquivo);
         free(vetor[i].livro);
     }
