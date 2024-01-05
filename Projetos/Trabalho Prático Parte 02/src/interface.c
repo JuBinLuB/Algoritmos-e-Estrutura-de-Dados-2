@@ -10,6 +10,7 @@
 #include "emprestimo.h"
 #include "classificacao.h"
 #include "selectionSort.h"
+#include "intercalacao.h"
 
 // Funcao para imprimir o menu principal.
 void imprimirMenuPrincipal() {
@@ -401,7 +402,7 @@ void subMenuOrdenarLivro(FILE *arqLivros, FILE *log) {
         switch (opcao) {
         case 1:
             // Codigo para opcao de menu Selection Sort.
-            printf("\n\tOrdenando arquivo de Livros...\n\n");
+            printf("\n\tOrdenando arquivo de Livros por Selection Sort...\n\n");
 
             selectionSortL(arqLivros, log, tamanhoArquivoL(arqLivros));
 
@@ -411,16 +412,14 @@ void subMenuOrdenarLivro(FILE *arqLivros, FILE *log) {
             break;
         case 2:
             // Codigo para opcao de menu Classificacao Externa.
-            printf("\n\tOrdenando arquivo de Emprestimos...\n\n");
+            printf("\n\tOrdenando arquivo de Livros por Classificacao Externa...\n\n");
 
-            selecaoSubstituicaoL(arqLivros, log, 6);
-
-            /*
-                Implementar Intercalacao Livro...
-            */
+            int numParticoes = selecaoSubstituicaoL(arqLivros, log, 6);
+            intercalacaoL(&arqLivros, log, numParticoes, 4);
 
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
+            imprimirBaseL(arqLivros);
             system("pause");
             break;
         case 3:
@@ -449,7 +448,7 @@ void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log) {
         switch (opcao) {
         case 1:
             // Codigo para opcao de menu Selection Sort.
-            printf("\n\tOrdenando arquivo de Livros...\n\n");
+            printf("\n\tOrdenando arquivo de Emprestimos por Selection Sort...\n\n");
 
             selectionSortU(arqEmprestimos, log, tamanhoArquivoU(arqEmprestimos));
 
@@ -459,7 +458,7 @@ void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log) {
             break;
         case 2:
             // Codigo para opcao de menu Classificacao Externa.
-            printf("\n\tOrdenando arquivo de Emprestimos...\n\n");
+            printf("\n\tOrdenando arquivo de Emprestimos por Classificacao Externa...\n\n");
 
             selecaoSubstituicaoU(arqEmprestimos, log, 6);
 

@@ -39,7 +39,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
         fseek(in, totalRegistrosLidos * tamanhoRegistroL(), SEEK_SET);
         // Le um registro e o armazena na memoria.
         livro[totalRegistrosLidos] = leL(in);
-        // Incrementa o contador de registros lidos.
+        // Incrementa o o numero total de registros lidos.
         totalRegistrosLidos++;
         // Sai do loop se ja leu M registros.
         if (totalRegistrosLidos >= M) {

@@ -18,6 +18,7 @@ lib: $(OBJ)/livro.o \
 	 $(OBJ)/interface.o \
 	 $(OBJ)/selectionSort.o \
 	 $(OBJ)/classificacao.o \
+	 $(OBJ)/intercalacao.o \
 	 $(OBJ)/randomizer.o
 	ar -rcs $(LIB)/libbiblioteca.a $(OBJ)/*.o
 
