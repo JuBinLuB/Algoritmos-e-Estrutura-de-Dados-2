@@ -415,7 +415,10 @@ void subMenuOrdenarLivro(FILE *arqLivros, FILE *log) {
             printf("\n\tOrdenando arquivo de Livros por Classificacao Externa...\n\n");
 
             int numParticoes = selecaoSubstituicaoL(arqLivros, log, 6);
-            intercalacaoL(&arqLivros, log, numParticoes, 4);
+
+            if (numParticoes > 1) {
+                intercalacaoL(&arqLivros, log, numParticoes, 4);
+            }
 
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");

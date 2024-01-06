@@ -121,7 +121,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             TLivro *proximoRegistro = leL(vetor[indiceMenor].arquivo);
 
             // Verifica se ha mais registros para serem lidos no arquivo.
-            if (proximoRegistro == NULL) {
+            if (proximoRegistro != NULL) {
                 // Substitui o registro atual no array pelo proximo registro lido do arquivo.
                 vetor[indiceMenor].livro = proximoRegistro;
             } else {
