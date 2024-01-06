@@ -21,7 +21,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     // Declaracao de variaveis.
-    TVetor vetor[F];
+    TVetor *vetor = (TVetor *)malloc(F * sizeof(TVetor));
     int particoesLidas = 0;
     int particoesGeradas = 0;
     int particoesProcessadas = F - 1;
@@ -46,7 +46,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
 
             if (vetor[i].arquivo != NULL) {
                 // Posiciona o cursor no primeiro registro a ser lido.
-                fseek(vetor[i].arquivo, vetor[i].posicao * tamanhoRegistroL(), SEEK_SET);    
+                fseek(vetor[i].arquivo, vetor[i].posicao * tamanhoRegistroL(), SEEK_SET);
                 
                 // Le o primeiro registro do arquivo de entrada.
                 TLivro *l = leL(vetor[i].arquivo);
@@ -78,7 +78,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         }
 
         // Variavel auxiliar para a posicao no arquivo de saida.
-        int posicaoSaida = 0;
+        int posicaoArquivoSaida = 0;
 
         // Intercalacao.
         while (1) {
@@ -87,15 +87,12 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
 
             // Encontrar o menor registro entre as particoes.
             for (int i = 0; i < F - 1; i++) {
-                // Verifica se o arquivo atual nao esta vazio.
-                if (vetor[i].arquivo != NULL) {
-                    // Verifica se o ISBN do livro atual e' menor do que o menor ISBN encontrado ate agora.
-                    if (vetor[i].livro->ISBN < menorISBN) {
-                        // Atualiza menorISBN com o ISBN do livro atual.
-                        menorISBN = vetor[i].livro->ISBN;
-                        // Atualiza a variavel "indiceMenor" para o indice do livro com o menor ISBN.
-                        indiceMenor = i;
-                    }
+                // Verifica se o ISBN do livro atual e' menor do que o menor ISBN encontrado ate agora.
+                if (vetor[i].livro->ISBN < menorISBN) {
+                    // Atualiza menorISBN com o ISBN do livro atual.
+                    menorISBN = vetor[i].livro->ISBN;
+                    // Atualiza a variavel "indiceMenor" para o indice do livro com o menor ISBN.
+                    indiceMenor = i;
                 }
             }
 
@@ -106,10 +103,13 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             }
 
             // Posiciona o cursor no inicio da posicao de saida no arquivo de saida.
-            fseek(vetor[F - 1].arquivo, posicaoSaida * tamanhoRegistroL(), SEEK_SET);
+            fseek(vetor[F - 1].arquivo, posicaoArquivoSaida * tamanhoRegistroL(), SEEK_SET);
 
             // Grava o registro de menor ISBN na particao de saida.
             salvaL(vetor[indiceMenor].livro, vetor[F - 1].arquivo);
+
+            // Incrementa a posicao de saida.
+            posicaoArquivoSaida++;
 
             // Incrementa a posicao no arquivo da particao de onde o registro foi lido.
             vetor[indiceMenor].posicao++;
@@ -120,11 +120,8 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             // Le o proximo registro do arquivo de entrada.
             TLivro *proximoRegistro = leL(vetor[indiceMenor].arquivo);
 
-            // Incrementa a posicao de saida.
-            posicaoSaida++;
-
             // Verifica se ha mais registros para serem lidos no arquivo.
-            if (proximoRegistro != NULL) {
+            if (proximoRegistro == NULL) {
                 // Substitui o registro atual no array pelo proximo registro lido do arquivo.
                 vetor[indiceMenor].livro = proximoRegistro;
             } else {
@@ -134,13 +131,6 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         }
         // Atualiza o numero de particoes restantes.
         numParticoes = numParticoes + particoesAtualizadas - particoesProcessadas;
-
-        fprintf(log, "\ttotalParticoes value: %d\n", totalParticoes);
-        fprintf(log, "\tparticoesGeradas value: %d\n", particoesGeradas);
-        fprintf(log, "\tparticoesLidas value: %d\n", particoesLidas);
-        fprintf(log, "\tparticoesProcessadas value: %d\n", particoesProcessadas);
-        fprintf(log, "\tparticoesAtualizadas value: %d\n", particoesAtualizadas);
-        fprintf(log, "\tnumParticoes value: %d\n\n", numParticoes);
     }
     // Atualiza o ponteiro para o arquivo de saida.
     *out = vetor[F - 1].arquivo;
@@ -150,6 +140,9 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         fclose(vetor[i].arquivo);
         free(vetor[i].livro);
     }
+    // Libera memoria alocada para o vetor.
+    free(vetor);
+
     // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
 
