@@ -4,36 +4,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void imprimirMenuPrincipal(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
+// MENSAGEM PARA EXIBIR O MENU PRINCIPAL.
+void imprimirMenuPrincipal();
 
-void imprimirSubMenuCriarBase(); // MENSAGEM PARA EXIBIR O MENU DE CRIAR BASE.
+// MENSAGEM PARA EXIBIR O MENU DE CRIAR BASE.
+void imprimirSubMenuCriarBase();
 
-void imprimirSubMenu(char *str); // MENSAGEM PARA EXIBIR O MENU DE BUSCA.
+// MENSAGEM PARA EXIBIR O MENU DE BUSCA.
+void imprimirSubMenu(char *str);
 
-void imprimirSubMenuBuscar(); // MENSAGEM PARA EXIBIR O SUB MENU DE BUSCA.
+// MENSAGEM PARA EXIBIR O SUB MENU DE BUSCA.
+void imprimirSubMenuBuscar();
 
-void imprimirSubMenuOrdenar(); // MENSAGEM PARA EXIBIR O SUB MENU DE ORDENAR.
+// MENSAGEM PARA EXIBIR O SUB MENU DE ORDENAR.
+void imprimirSubMenuOrdenar();
 
-void imprimirMensagemOpcaoInvalida(); // MENSAGEM DE ALERTA DE DIGITO INVALIDO.
+// MENSAGEM DE ALERTA DE DIGITO INVALIDO.
+void imprimirMensagemOpcaoInvalida();
 
-void imprimirMensagemSair(); // MENSAGEM DE SAIDA DO MODULO.
+// MENSAGEM DE SAIDA DO MODULO.
+void imprimirMensagemSair();
 
-void menuPrincipal(FILE *arqLivro, FILE *arqEmprestimo, FILE *log); // MODULO DE MENU.
+// MODULO DE MENU.
+void menuPrincipal(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
 
-void menuCriarBaseDados(FILE *arq); // MODULO CRIAR BASE DE DADOS.
+// MODULO CRIAR BASE DE DADOS.
+void menuCriarBaseDados(FILE *arq);
 
-void menuImprimir(FILE *arqLivro, FILE *arqEmprestimo); // MODULO IMPRIMIR.
+// MODULO IMPRIMIR.
+void menuImprimir(FILE *arqLivro, FILE *arqEmprestimo);
 
-void menuBuscar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log); // MODULO DE BUSCAR.
+// MODULO DE BUSCAR.
+void menuBuscar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
 
-void subMenuBuscarLivro(FILE *arqLivros, FILE* log); // MODULO DE SUB MENU BUSCAR LIVRO.
+// MODULO DE SUB MENU BUSCAR LIVRO.
+void subMenuBuscarLivro(FILE *arqLivros, FILE* log);
 
-void subMenuBuscarEmprestimo(FILE *arqEmprestimos, FILE* log); // MODULO DE SUB MENU BUSCAR EMPRESTIMO.
+// MODULO DE SUB MENU BUSCAR EMPRESTIMO.
+void subMenuBuscarEmprestimo(FILE *arqEmprestimos, FILE* log);
 
-void menuOrdenar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log); // MODULO DE ORDENAR.
+// MODULO DE ORDENAR.
+void menuOrdenar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
 
-void subMenuOrdenarLivro(FILE *arqLivros, FILE *log); // MODULO DE SUB MENU ORDENAR LIVRO.
+// MODULO DE SUB MENU ORDENAR LIVRO.
+void subMenuOrdenarLivro(FILE *arqLivros, FILE *log);
 
-void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log); // MODULO DE SUB MENU ORDENAR EMPRESTIMO.
+// MODULO DE SUB MENU ORDENAR EMPRESTIMO.
+void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log);
 
 # endif // INTERFACE_H_INCLUDED

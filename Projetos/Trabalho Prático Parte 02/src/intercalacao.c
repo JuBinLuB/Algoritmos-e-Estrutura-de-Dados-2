@@ -83,7 +83,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         // Intercalacao.
         while (1) {
             int menorISBN = INT_MAX;
-            int indiceMenor = 0;
+            int indiceMenor = -1;
 
             // Encontrar o menor registro entre as particoes.
             for (int i = 0; i < particoesProcessadas; i++) {

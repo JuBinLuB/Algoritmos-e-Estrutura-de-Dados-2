@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "randomizer.h"
+
 // Gera datas aleatorias no formato "DD/MM/AAAA".
 void gerarDataAleatoria(char *data) {
     // Define o intervalo de anos.

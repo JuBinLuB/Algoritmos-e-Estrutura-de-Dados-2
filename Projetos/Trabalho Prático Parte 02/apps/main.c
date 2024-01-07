@@ -13,7 +13,7 @@ int main() {
     if ((livro = fopen("livro.dat", "w+b")) == NULL || 
         (emprestimo = fopen("emprestimo.dat", "w+b")) == NULL || 
         (log = fopen("log.txt", "w+")) == NULL) {
-        printf("\tErro ao abrir arquivo\n");
+        printf("\tErro ao abrir arquivo.\n");
         exit(1);
     } else {
         // Inicia o modulo de menu.
