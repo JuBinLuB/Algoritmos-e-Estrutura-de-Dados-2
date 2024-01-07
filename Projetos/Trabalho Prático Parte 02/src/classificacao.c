@@ -151,7 +151,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
     // Descarrega o buffer para ter certeza que dados foram gravados.
     fflush(in);
 
-    // Libera a memoria alocada para os registros em memoria.
+    // Libera a memoria alocada para os M registros em memoria.
     liberarRegistrosL(livro, M);
 
     // Retorna o numero total de particoes criadas.
@@ -303,7 +303,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
     // Descarrega o buffer para ter certeza que dados foram gravados.
     fflush(in);
 
-    // Libera a memoria alocada para os registros em memoria.
+    // Libera a memoria alocada para os M registros em memoria.
     liberarRegistrosU(usuario, M);
 
     // Retorna o numero total de particoes criadas.

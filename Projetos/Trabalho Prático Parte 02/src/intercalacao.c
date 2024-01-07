@@ -29,7 +29,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
     int numParticoes = totalParticoes;
     char nomeParticao[20];
 
-    fprintf(log, "\n\tIntercalacao Livros...\n\n");
+    fprintf(log, "\n\tIntercalacao Otima Livros...\n\n");
 
     // Loop principal para intercalacao de particoes.
     while (numParticoes > 1) {
@@ -95,13 +95,11 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
                     indiceMenor = i;
                 }
             }
-
             // Verifica se ha um ISBN valido no vetor de livros.
             if (menorISBN == INT_MAX) {
                 // Terminou o processamento.
                 break;
             }
-
             // Posiciona o cursor no inicio da posicao de saida no arquivo de saida.
             fseek(vetor[particoesProcessadas].arquivo, posicaoArquivoSaida * tamanhoRegistroL(), SEEK_SET);
 
@@ -130,7 +128,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             }
         }
         // Atualiza o numero de particoes restantes.
-        numParticoes = numParticoes + particoesAtualizadas - particoesProcessadas;
+        numParticoes += particoesAtualizadas - particoesProcessadas;
     }
     // Atualiza o ponteiro para o arquivo de saida.
     *out = vetor[particoesProcessadas].arquivo;
