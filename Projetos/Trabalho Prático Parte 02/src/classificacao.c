@@ -56,7 +56,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, char *nome, int M) {
         // Verifica se ha registros nao congelados para criar uma nova particao.
         if (existemNaoCongelados(congelados, M)) {
             // - Abre um arquivo binario para gravacao.
-            out = fopen(nomeParticao, "wb+");
+            out = fopen(nomeParticao, "w+b");
             if (out == NULL) {
                 perror("Erro ao abrir novo arquivo de saida.");
                 exit(EXIT_FAILURE);
@@ -208,7 +208,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, char *nome, int M) {
         // Verifica se ha registros nao congelados para criar uma nova particao.
         if (existemNaoCongelados(congelados, M)) {
             // - Abre um arquivo binario para gravacao.
-            out = fopen(nomeParticao, "wb+");
+            out = fopen(nomeParticao, "w+b");
             if (out == NULL) {
                 perror("Erro ao abrir novo arquivo de saida.");
                 exit(EXIT_FAILURE);

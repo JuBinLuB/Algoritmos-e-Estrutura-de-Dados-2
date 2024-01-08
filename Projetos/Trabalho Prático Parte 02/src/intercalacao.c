@@ -69,7 +69,7 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
         particoesGeradas++;
 
         // Abre o arquivo de saida, no formato binario para escrita.
-        vetor[particoesProcessadas].arquivo = fopen(nomeParticao, "wb+");
+        vetor[particoesProcessadas].arquivo = fopen(nomeParticao, "w+b");
 
         // Verifica se houve erro na abertura do arquivo de saida.
         if (vetor[particoesProcessadas].arquivo == NULL) {
