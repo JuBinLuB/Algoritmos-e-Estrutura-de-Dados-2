@@ -6,10 +6,9 @@
 #include "usuario.h"
 #include "buscaSequencial.h"
 #include "buscaBinaria.h"
-#include "insertionSort.h"
 #include "emprestimo.h"
-#include "classificacao.h"
 #include "selectionSort.h"
+#include "classificacao.h"
 #include "intercalacao.h"
 
 // Funcao para imprimir o menu principal.
@@ -54,7 +53,7 @@ void imprimirSubMenuBuscar() {
 // Funcao para imprimir mensagem de submenu de ordenar.
 void imprimirSubMenuOrdenar() {
     system("cls");
-    printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE ORDENAR <<<<<<<<<<<<<<<<<<<<<<<<");
+    printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE ORDENACAO <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("\n\n\t1. SELECTION SORT");
     printf("  \n\t2. CLASSIFICACAO EXTERNA");
     printf("  \n\t3. VOLTAR");
@@ -414,15 +413,14 @@ void subMenuOrdenarLivro(FILE *arqLivros, FILE *log) {
             // Codigo para opcao de menu Classificacao Externa.
             printf("\n\tOrdenando arquivo de Livros por Classificacao Externa...\n\n");
 
-            int numParticoes = selecaoSubstituicaoL(arqLivros, log, 6);
+            int numParticoes = selecaoSubstituicaoL(arqLivros, log, "particao", 6);
 
             if (numParticoes > 1) {
-                intercalacaoL(&arqLivros, log, numParticoes, 4);
+                intercalacaoL(arqLivros, log, "particao", numParticoes, 4);
             }
 
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
-            imprimirBaseL(arqLivros);
             system("pause");
             break;
         case 3:
@@ -463,11 +461,11 @@ void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log) {
             // Codigo para opcao de menu Classificacao Externa.
             printf("\n\tOrdenando arquivo de Emprestimos por Classificacao Externa...\n\n");
 
-            selecaoSubstituicaoU(arqEmprestimos, log, 6);
+            // int numParticoes = selecaoSubstituicaoU(arqEmprestimos, log, "particao", 6);
 
-            /*
-                Implementar Intercalacao Usuario...
-            */
+            // if (numParticoes > 1) {
+            //     intercalacaoU(arqEmprestimos, log, "particao", numParticoes, 4);
+            // }
 
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");

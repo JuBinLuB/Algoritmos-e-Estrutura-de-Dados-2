@@ -8,10 +8,10 @@
 #include "usuario.h"
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao para livros.
-int selecaoSubstituicaoL(FILE *arq, FILE *log, int M);
+int selecaoSubstituicaoL(FILE *in, FILE *log, char *nome, int M);
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao para usuarios.
-int selecaoSubstituicaoU(FILE *arq, FILE *log, int M);
+int selecaoSubstituicaoU(FILE *in, FILE *log, char *nome, int M);
 
 // Verifica se ha pelo menos um registro nao congelado.
 int existemNaoCongelados(int *congelados, int n);

@@ -16,7 +16,7 @@ void gerarDataAleatoria(char *data) {
     // Gera um mes aleatorio no intervalo de 1 a 12.
     int mes = 1 + rand() % 12;
     // Gera um ano aleatorio no intervalo de 1980 a 2023.
-    int ano = 1980 + rand() % (anoFim - anoInicio + 1);
+    int ano = anoInicio + rand() % (anoFim - anoInicio + 1);
 
     // Verifica se o ano e' bissexto.
     if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) {

@@ -7,7 +7,7 @@
 #include "classificacao.h"
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao para livros.
-int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
+int selecaoSubstituicaoL(FILE *in, FILE *log, char *nome, int M) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
@@ -49,7 +49,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
     }
 
     // Abre um novo arquivo de saida.
-    sprintf(nomeParticao, "particao%d.dat", totalParticoes);
+    snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, totalParticoes);
 
     // Loop responsavel pela execucao dos passos de 2 ate 7.
     while (totalRegistrosLidos < totalRegistros) {
@@ -136,7 +136,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
         }
         // - 7.3. Abrir nova particao de saida.
         totalParticoes++;
-        sprintf(nomeParticao, "particao%d.dat", totalParticoes);
+        snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, totalParticoes);
     }
     // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -159,7 +159,7 @@ int selecaoSubstituicaoL(FILE *in, FILE *log, int M) {
 }
 
 // Executa o algoritmo de geracao de particoes por Selecao com Substituicao para usuarios.
-int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
+int selecaoSubstituicaoU(FILE *in, FILE *log, char *nome, int M) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
@@ -201,7 +201,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
     }
 
     // Abre um novo arquivo de saida.
-    sprintf(nomeParticao, "particao%d.dat", totalParticoes);
+    snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, totalParticoes);
 
     // Loop responsavel pela execucao dos passos de 2 ate 7.
     while (totalRegistrosLidos < totalRegistros) {
@@ -288,7 +288,7 @@ int selecaoSubstituicaoU(FILE *in, FILE *log, int M) {
         }
         // - 7.3. Abrir nova particao de saida.
         totalParticoes++;
-        sprintf(nomeParticao, "particao%d.dat", totalParticoes);
+        snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, totalParticoes);
     }
     // Registra o tempo de fim da execucao do codigo.
     clock_gettime(CLOCK_MONOTONIC, &end);

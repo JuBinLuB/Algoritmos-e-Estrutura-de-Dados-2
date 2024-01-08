@@ -15,7 +15,7 @@ typedef struct {
 } TVetor;
 
 // Executa o algoritmo de Intercalacao Otima de particoes para livros.
-void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
+void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) {
     // Registra o tempo de inicio da execucao do codigo.
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
@@ -36,7 +36,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         // Abre "F - 1" arquivos de entrada.
         for (int i = 0; i < particoesProcessadas; i++) {
             // Gera o nome do arquivo da proxima particao a ser lida.
-            sprintf(nomeParticao, "particao%d.dat", particoesLidas);
+            snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, particoesLidas);
 
             // Abre um arquivo binario para leitura.
             vetor[i].arquivo = fopen(nomeParticao, "rb");
@@ -45,7 +45,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             vetor[i].posicao = 0;
 
             if (vetor[i].arquivo != NULL) {
-                // Posiciona o cursor no primeiro registro a ser lido.
+                // Move o cursor para a posicao do registro a ser lido.
                 fseek(vetor[i].arquivo, vetor[i].posicao * tamanhoRegistroL(), SEEK_SET);
                 
                 // Le o primeiro registro do arquivo de entrada.
@@ -63,7 +63,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             particoesLidas++;
         }
         // Gera o nome do arquivo da proxima particao a ser gerada.
-        sprintf(nomeParticao, "particao%d.dat", totalParticoes + particoesGeradas);
+        snprintf(nomeParticao, sizeof(nomeParticao), "%s%d.dat", nome, totalParticoes + particoesGeradas);
 
         // Incrementa o numero de particoes geradas.
         particoesGeradas++;
@@ -100,7 +100,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
                 // Terminou o processamento.
                 break;
             }
-            // Posiciona o cursor no inicio da posicao de saida no arquivo de saida.
+            // Move o cursor para a posicao de gravacao na particao de saida.
             fseek(vetor[particoesProcessadas].arquivo, posicaoArquivoSaida * tamanhoRegistroL(), SEEK_SET);
 
             // Grava o registro de menor ISBN na particao de saida.
@@ -112,7 +112,7 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
             // Incrementa a posicao no arquivo da particao de onde o registro foi lido.
             vetor[indiceMenor].posicao++;
 
-            // Posiciona o cursor no primeiro registro a ser lido.
+            // Move o cursor para a posicao do proximo registro a ser lido.
             fseek(vetor[indiceMenor].arquivo, vetor[indiceMenor].posicao * tamanhoRegistroL(), SEEK_SET);
 
             // Le o proximo registro do arquivo de entrada.
@@ -130,8 +130,8 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
         // Atualiza o numero de particoes restantes.
         numParticoes += particoesAtualizadas - particoesProcessadas;
     }
-    // Atualiza o ponteiro para o arquivo de saida.
-    *out = vetor[particoesProcessadas].arquivo;
+    // Realiza a sobrescrita do conteudo do arquivo original pelo conteudo do novo arquivo.
+    sobrescreverArquivo(out, vetor[particoesProcessadas].arquivo, tamanhoRegistroL());
 
     // Fecha os arquivos das particoes de entrada e libera memoria alocada para cada livro.
     for (int i = 0; i < particoesProcessadas; i++) {
@@ -150,4 +150,20 @@ void intercalacaoL(FILE **out, FILE *log, int totalParticoes, int F) {
 
     // Registra o tempo de CPU consumido pela aplicacao no arquivo de log.
     fprintf(log, "\n\tThe elapsed time is %f seconds\n", time_spent);
+}
+
+// Funcao para sobrescrever o conteudo do arquivo original pelo conteudo do novo arquivo.
+void sobrescreverArquivo(FILE *arquivoOriginal, FILE *novoArquivo, int tamanhoRegistro) {
+    for (int i = 0; i < tamanhoArquivoL(arquivoOriginal); i++) {
+        // Move o cursor para o registro "i" do arquivo original.
+        fseek(arquivoOriginal, i * tamanhoRegistro, SEEK_SET);
+        // Move o cursor para o registro "i" do novo arquivo.
+        fseek(novoArquivo, i * tamanhoRegistro, SEEK_SET);
+        // Le o registro "i" do novo arquivo.
+        TLivro *l = leL(novoArquivo);
+        if (l != NULL) {
+            // Grava o registro "i" do novo arquivo na posicao "i" do arquivo original.
+            salvaL(l, arquivoOriginal);
+        }
+    }
 }

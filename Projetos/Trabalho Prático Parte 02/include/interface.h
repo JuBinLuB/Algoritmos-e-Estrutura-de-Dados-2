@@ -26,16 +26,16 @@ void imprimirMensagemOpcaoInvalida();
 void imprimirMensagemSair();
 
 // MODULO DE MENU.
-void menuPrincipal(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
+void menuPrincipal(FILE *arqLivros, FILE *arqEmprestimos, FILE *log);
 
 // MODULO CRIAR BASE DE DADOS.
 void menuCriarBaseDados(FILE *arq);
 
 // MODULO IMPRIMIR.
-void menuImprimir(FILE *arqLivro, FILE *arqEmprestimo);
+void menuImprimir(FILE *arqLivros, FILE *arqEmprestimos);
 
 // MODULO DE BUSCAR.
-void menuBuscar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
+void menuBuscar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log);
 
 // MODULO DE SUB MENU BUSCAR LIVRO.
 void subMenuBuscarLivro(FILE *arqLivros, FILE* log);
@@ -44,7 +44,7 @@ void subMenuBuscarLivro(FILE *arqLivros, FILE* log);
 void subMenuBuscarEmprestimo(FILE *arqEmprestimos, FILE* log);
 
 // MODULO DE ORDENAR.
-void menuOrdenar(FILE *arqLivro, FILE *arqEmprestimo, FILE *log);
+void menuOrdenar(FILE *arqLivros, FILE *arqEmprestimos, FILE *log);
 
 // MODULO DE SUB MENU ORDENAR LIVRO.
 void subMenuOrdenarLivro(FILE *arqLivros, FILE *log);
