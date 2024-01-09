@@ -41,7 +41,7 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
             // Abre um arquivo binario para leitura.
             vetor[i].arquivo = fopen(nomeParticao, "rb");
             
-            // Inicializa a posicao do cursor de leitura para o inicio do arquivo.
+            // Inicializa a posicao do cursor dos arquivos de entrada.
             vetor[i].posicao = 0;
 
             if (vetor[i].arquivo != NULL) {
@@ -77,8 +77,8 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
             exit(EXIT_FAILURE);
         }
 
-        // Variavel auxiliar para a posicao no arquivo de saida.
-        int posicaoArquivoSaida = 0;
+        // Inicializa a posicao do cursor do arquivo de saida.
+        vetor[particoesProcessadas].posicao = 0;
 
         // Intercalacao.
         while (1) {
@@ -101,13 +101,13 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
                 break;
             }
             // Move o cursor para a posicao de gravacao na particao de saida.
-            fseek(vetor[particoesProcessadas].arquivo, posicaoArquivoSaida * tamanhoRegistroL(), SEEK_SET);
+            fseek(vetor[particoesProcessadas].arquivo, vetor[particoesProcessadas].posicao * tamanhoRegistroL(), SEEK_SET);
 
             // Grava o registro de menor ISBN na particao de saida.
             salvaL(vetor[indiceMenor].livro, vetor[particoesProcessadas].arquivo);
 
-            // Incrementa a posicao de saida.
-            posicaoArquivoSaida++;
+            // Incrementa a posicao no arquivo de saida.
+            vetor[particoesProcessadas].posicao++;
 
             // Incrementa a posicao no arquivo da particao de onde o registro foi lido.
             vetor[indiceMenor].posicao++;
