@@ -10,7 +10,10 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F);
 // Executa o algoritmo de Intercalacao Otima de particoes para usuarios.
 void intercalacaoU(FILE *out, FILE *log, char *nome, int totalParticoes, int F);
 
-// Funcao para sobrescrever o conteudo do arquivo original pelo conteudo do novo arquivo.
-void sobrescreverArquivo(FILE *arquivoOriginal, FILE *novoArquivo, int tamanhoRegistro);
+// Funcao para sobrescrever registros de livros do arquivo original pelo conteudo do novo arquivo.
+void sobrescreverArquivoL(FILE *arquivoOriginal, FILE *novoArquivo, int tamanhoRegistro);
+
+// Funcao para sobrescrever registros de usuarios do arquivo original pelo conteudo do novo arquivo.
+void sobrescreverArquivoU(FILE *arquivoOriginal, FILE *novoArquivo, int tamanhoRegistro);
 
 #endif // INTERCALACAO_H_INCLUDED
