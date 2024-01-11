@@ -461,11 +461,11 @@ void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log) {
             // Codigo para opcao de menu Classificacao Externa.
             printf("\n\tOrdenando arquivo de Emprestimos por Classificacao Externa...\n\n");
 
-            // int numParticoes = selecaoSubstituicaoU(arqEmprestimos, log, "particao", 6);
+            int numParticoes = selecaoSubstituicaoU(arqEmprestimos, log, "particao", 6);
 
-            // if (numParticoes > 1) {
-            //     intercalacaoU(arqEmprestimos, log, "particao", numParticoes, 4);
-            // }
+            if (numParticoes > 1) {
+                intercalacaoU(arqEmprestimos, log, "particao", numParticoes, 4);
+            }
 
             system("cls");
             printf("\n\tArquivo ordenado.\n\n");
