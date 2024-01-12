@@ -10,6 +10,7 @@
 #include "selectionSort.h"
 #include "classificacao.h"
 #include "intercalacao.h"
+#include "sobrescrever.h"
 
 // Funcao para imprimir o menu principal.
 void imprimirMenuPrincipal() {
@@ -413,10 +414,27 @@ void subMenuOrdenarLivro(FILE *arqLivros, FILE *log) {
             // Codigo para opcao de menu Classificacao Externa.
             printf("\n\tOrdenando arquivo de Livros por Classificacao Externa...\n\n");
 
-            int numParticoes = selecaoSubstituicaoL(arqLivros, log, "particao", 6);
+            // Definindo o nome da particao e inicializando.
+            char nomeDaParticao[20];
+            snprintf(nomeDaParticao, sizeof(nomeDaParticao), "particao");
 
+            int numParticoes = selecaoSubstituicaoL(arqLivros, log, nomeDaParticao, 6);
+
+            // Verificando se ha mais de uma particao para realizar a intercalacao.
             if (numParticoes > 1) {
-                intercalacaoL(arqLivros, log, "particao", numParticoes, 4);
+                intercalacaoL(arqLivros, log, nomeDaParticao, numParticoes, 4);
+            } else {
+                // Se houver apenas uma particao, nao e' necessario intercalar.
+                snprintf(nomeDaParticao, sizeof(nomeDaParticao), "%s%d.dat", nomeDaParticao, 0);
+                
+                FILE *out = fopen(nomeDaParticao, "rb");
+                if (out == NULL) {
+                    perror("Erro ao abrir arquivo de saida.");
+                    exit(EXIT_FAILURE);
+                }
+                // Sobrescrevendo o arquivo de livros com os dados ordenados.
+                sobrescreverArquivoL(arqLivros, out, tamanhoRegistroL());
+                fclose(out);
             }
 
             system("cls");
@@ -461,10 +479,27 @@ void subMenuOrdenarEmprestimo(FILE *arqEmprestimos, FILE *log) {
             // Codigo para opcao de menu Classificacao Externa.
             printf("\n\tOrdenando arquivo de Emprestimos por Classificacao Externa...\n\n");
 
-            int numParticoes = selecaoSubstituicaoU(arqEmprestimos, log, "particao", 6);
+            // Definindo o nome da particao e inicializando.
+            char nomeDaParticao[20];
+            snprintf(nomeDaParticao, sizeof(nomeDaParticao), "particao");
 
+            int numParticoes = selecaoSubstituicaoU(arqEmprestimos, log, nomeDaParticao, 6);
+
+            // Verificando se ha mais de uma particao para realizar a intercalacao.
             if (numParticoes > 1) {
-                intercalacaoU(arqEmprestimos, log, "particao", numParticoes, 4);
+                intercalacaoU(arqEmprestimos, log, nomeDaParticao, numParticoes, 4);
+            } else {
+                // Se houver apenas uma particao, nao e' necessario intercalar.
+                snprintf(nomeDaParticao, sizeof(nomeDaParticao), "%s%d.dat", nomeDaParticao, 0);
+                
+                FILE *out = fopen(nomeDaParticao, "rb");
+                if (out == NULL) {
+                    perror("Erro ao abrir arquivo de saida.");
+                    exit(EXIT_FAILURE);
+                }
+                // Sobrescrevendo o arquivo de emprestimos com os dados ordenados.
+                sobrescreverArquivoU(arqEmprestimos, out, tamanhoRegistroU());
+                fclose(out);
             }
 
             system("cls");
