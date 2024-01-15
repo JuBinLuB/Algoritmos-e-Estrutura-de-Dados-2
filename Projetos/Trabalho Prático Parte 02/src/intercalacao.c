@@ -31,7 +31,7 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
     TVetorL *vetor = (TVetorL *)malloc(F * sizeof(TVetorL));
     int particoesLidas = 0;
     int particoesGeradas = 0;
-    int particoesAtualizadas = 1;
+    int particoesGeradasAtualmente = 1;
     int particoesProcessadas = F - 1;
     int numParticoes = totalParticoes;
     char nomeParticao[20];
@@ -135,7 +135,9 @@ void intercalacaoL(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
             }
         }
         // Atualiza o numero de particoes restantes.
-        numParticoes += particoesAtualizadas - particoesProcessadas;
+        // Do conjunto inicial de particoes removem-se as particoes intercaladas
+        // e a ele agrega-se a particao gerada na intercalacao.
+        numParticoes += particoesGeradasAtualmente - particoesProcessadas;
     }
     // Realiza a sobrescrita do conteudo do arquivo original pelo conteudo do novo arquivo.
     sobrescreverArquivoL(out, vetor[particoesProcessadas].arquivo, tamanhoRegistroL());
@@ -169,7 +171,7 @@ void intercalacaoU(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
     TVetorU *vetor = (TVetorU *)malloc(F * sizeof(TVetorU));
     int particoesLidas = 0;
     int particoesGeradas = 0;
-    int particoesAtualizadas = 1;
+    int particoesGeradasAtualmente = 1;
     int particoesProcessadas = F - 1;
     int numParticoes = totalParticoes;
     char nomeParticao[20];
@@ -273,7 +275,7 @@ void intercalacaoU(FILE *out, FILE *log, char *nome, int totalParticoes, int F) 
             }
         }
         // Atualiza o numero de particoes restantes.
-        numParticoes += particoesAtualizadas - particoesProcessadas;
+        numParticoes += particoesGeradasAtualmente - particoesProcessadas;
     }
     // Realiza a sobrescrita do conteudo do arquivo original pelo conteudo do novo arquivo.
     sobrescreverArquivoU(out, vetor[particoesProcessadas].arquivo, tamanhoRegistroU());
