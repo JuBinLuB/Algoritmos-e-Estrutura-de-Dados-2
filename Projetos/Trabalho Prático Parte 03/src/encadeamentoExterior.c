@@ -15,12 +15,17 @@
 
 // Cria uma tabela hash vazia de tamanho "tam", e salva no arquivo nomeArquivoHash.
 void criarHash(char *nomeArquivoHash, int M) {
+	// Cria uma lista de compartimentos inicialmente vazia.
 	ListaCompartimentos *lc = criaCompartimentos(0);
 	
-	for (int i = 0; i < M; i++){
+	// Loop para adicionar compartimentos vazios a lista de compartimentos.
+	for (int i = 0; i < M; i++) {
+		// Adiciona um compartimento vazio a lista.
 		addCompartimento(lc, -1);
 	}
+	// Salva a lista de compartimentos no arquivo hash.
 	salvaCompartimentos(nomeArquivoHash, lc);
+	// Libera a memoria alocada para a lista de compartimentos.
 	liberaCompartimentos(lc);
 }
 
