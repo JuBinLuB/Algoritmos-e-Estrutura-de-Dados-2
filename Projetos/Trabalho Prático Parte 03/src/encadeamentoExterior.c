@@ -42,7 +42,7 @@ int buscar(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 	// Abre o arquivo de hash para leitura binaria.
 	FILE *arqHash = fopen(nomeArquivoHash, "rb");
 
-	// Posiciona o cursor no arquivo de hash no endereço correspondente ao compartimento.
+	// Posiciona o cursor no arquivo de hash no endereco correspondente ao compartimento.
 	rc = fseek(arqHash, end * tamanhoCompartimento(), SEEK_SET);
 	assert(rc == 0 && "Falha no seek\n");
 
@@ -52,7 +52,7 @@ int buscar(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 	// Le o compartimento atual do arquivo de hash.
 	TCompartimento *lido = leCompartimento(arqHash);
 
-	// O endereço no arquivo de livros e' dado por lido->prox.
+	// O endereco no arquivo de livros e' dado por lido->prox.
 	seguinte = lido->prox;
 
 	while (seguinte != -1) {
@@ -69,7 +69,7 @@ int buscar(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 				fclose(arqLivros);
 				free(livro);
 				free(lido);
-				// Retorna o endereço onde o livro foi encontrado.
+				// Retorna o endereco onde o livro foi encontrado.
 				return seguinte;
 			}
 		}
@@ -106,7 +106,7 @@ int inserir(int ISBN, char *nomeLivro, char* nomeAutor, char* dataPubli, char *n
 	// Declaracao de ponteiro para compartimento.
 	TCompartimento *lido;
 	
-	// 1ª Tentativa: Obtencao direta do registro via compartimento hash.
+	// 1. Tentativa: Obtencao direta do registro via compartimento hash.
 	// Posicionamento do cursor no arquivo de hash.
 	rc = fseek(arqHash, end * tamanhoCompartimento(), SEEK_SET);
 	assert(rc == 0 && "Falha no seek\n");
@@ -117,7 +117,7 @@ int inserir(int ISBN, char *nomeLivro, char* nomeAutor, char* dataPubli, char *n
 	// Atribuicao do proximo endereco na lista encadeada.
 	seguinte = lido->prox;
 
-	// 2ª Tentativa: Busca do registro na lista de tratamento das colisoes.
+	// 2. Tentativa: Busca do registro na lista de tratamento das colisoes.
 	while (seguinte != -1) {
 		// Posiciona o cursor no registro seguinte.
 		rc = fseek(arqLivros, seguinte * tamanhoRegistroL(), SEEK_SET);
@@ -239,7 +239,6 @@ int excluir(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 
 		// Salva o livro com o campo "flag" atualizado.
     	salvaL(livro, arqLivros);
-		
     	fclose(arqLivros);
     	free(livro);
 	}
