@@ -78,7 +78,7 @@ int buscar(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 		free(livro);
 	}
 	free(lido);
-    fclose(arqHash);
+	fclose(arqHash);
 	fclose(arqLivros);
 	return -1;
 }
@@ -239,8 +239,8 @@ int excluir(int ISBN, char *nomeArquivoHash, char *nomeArquivoDados, int M) {
 
 		// Salva o livro com o campo "flag" atualizado.
     	salvaL(livro, arqLivros);
-
-		fclose(arqLivros);
+		
+    	fclose(arqLivros);
     	free(livro);
 	}
 	return end;
