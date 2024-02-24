@@ -1,6 +1,6 @@
 # Repositório de Aplicações para a Disciplina de Algoritmos e Estrutura de Dados 2
 
-Bem-vindo ao repositório de aplicações para a disciplina de Algoritmos e Estrutura de Dados II! Este repositório contém uma coleção de aplicações, algoritmos e estruturas de dados desenvolvidos como parte do curso. Aqui, você encontrará exemplos práticos e projetos que podem ajudar na compreensão e aplicação dos conceitos abordados na disciplina.
+Repositório de aplicações para a disciplina de Algoritmos e Estrutura de Dados II! Este repositório contém uma coleção de aplicações, algoritmos e estruturas de dados desenvolvidos como parte do curso. Aqui, você encontrará exemplos práticos e projetos que podem ajudar na compreensão e aplicação dos conceitos abordados na disciplina.
 
 ## Conteúdo
 
