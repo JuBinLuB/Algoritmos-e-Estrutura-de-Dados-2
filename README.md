@@ -14,14 +14,13 @@ Abordando tópicos essenciais, o conteúdo da disciplina inclui:
   4. **Tabela Hash:** Aplicação de tabelas hash para otimizar a busca e recuperação de dados, explorando colisões e fatores de carga.
 
 ## Estrutura do Repositório
-
 O repositório está organizado da seguinte maneira:
 
   1. **Algoritmos:** Nesta pasta, você encontrará implementações de algoritmos estudados no curso. Cada algoritmo é acompanhado por uma breve descrição e um exemplo de uso.
   
   2. **Projetos:** A pasta "Projetos" contém projetos mais complexos que aplicam os conceitos de algoritmos e estruturas de dados em cenários do mundo real.
 
-## Trabalhos Práticos
+## Projetos
 Ao longo da disciplina, foram desenvolvidos trabalhos práticos que aplicam os conceitos de algoritmos e estruturas de dados em cenários do mundo real. Os trabalhos práticos estão disponíveis na pasta **projetos**.
 
 ### Trabalho Prático 01
