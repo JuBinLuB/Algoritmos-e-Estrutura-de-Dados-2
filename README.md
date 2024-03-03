@@ -19,28 +19,3 @@ O repositório está organizado da seguinte maneira:
   1. **Algoritmos:** Nesta pasta, você encontrará implementações de algoritmos estudados no curso. Cada algoritmo é acompanhado por uma breve descrição e um exemplo de uso.
   
   2. **Projetos:** A pasta "Projetos" contém projetos mais complexos que aplicam os conceitos de algoritmos e estruturas de dados em cenários do mundo real.
-
-## Projetos
-Ao longo da disciplina, foram desenvolvidos trabalhos práticos que aplicam os conceitos de algoritmos e estruturas de dados em cenários do mundo real. Os trabalhos práticos estão disponíveis na pasta **projetos**.
-
-### Trabalho Prático 01
-Este trabalho visa construir um sistema de empréstimos de uma biblioteca, focando em operações relacionadas à entidade "livros". Inclui:
-  
-  - Criação de bases de dados ordenadas e desordenadas para a entidade "livros".
-
-  - Implementação de buscas sequencial e binária nas bases de dados.
-
-  - Ordenação em disco utilizando uma versão em disco do algoritmo "insertionSort".
-
-  - Realização de operações de empréstimos.
-
-### Trabalho Prático 02
-O segundo trabalho estende o primeiro, aprimorando a ordenação em disco com a implementação de um método de ordenação por classificação externa.
-
-### Trabalho Prático 03
-O terceiro trabalho tem como objetivo acelerar a busca na base de dados das versões anteriores, implementando uma tabela Hash. 
-
-## Como Utilizar Este Repositório
-  - Explore as pastas dedicadas a cada tópico para encontrar código-fonte, exemplos e documentação.
-    
-  - Para os trabalhos práticos, cada pasta possui instruções detalhadas e os respectivos códigos fonte.
