@@ -7,9 +7,9 @@ O projeto é dividido em vários arquivos, cada um responsável por uma parte es
 
   - `interface.h`: Contém as declarações de funções relacionadas à interface do usuário.
 
-  - `livro.h`: Define a estrutura e operações relacionadas aos livros.
+  - `livro.h`: Define a estrutura e operações relacionadas à entidade livro.
 
-  - `usuario.h`: Define a estrutura e operações relacionadas aos usuários.
+  - `usuario.h`: Define a estrutura e operações relacionadas à entidade usuário.
 
   - `buscaSequencial.h`: Implementa a busca sequencial em bases de dados.
 
@@ -17,7 +17,7 @@ O projeto é dividido em vários arquivos, cada um responsável por uma parte es
 
   - `insertionSort.h`: Implementa o algoritmo de ordenação Insertion Sort.
 
-  - `emprestimo.h`: Contém operações relacionadas aos empréstimos.
+  - `emprestimo.h`: Este arquivo encapsula a interação entre as entidades de livro e usuário através de operações de empréstimo.
 
 ## Compilação e Execução
 Em construção...
